@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render "layouts/application/head" %>
+  </head>
+
+  <body>
+    <div class="site">
+
+    <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full" data-boxed-layout="full">
+      <%= render "layouts/application/side_menu" %>
+      <%= render partial: "layouts/shared/flash_messages" %>
+      <%= yield %>
+    </div>
+
+    <%= debug(params) if Rails.env.development? %>
+
+    </div>
+  </body>
+</html>

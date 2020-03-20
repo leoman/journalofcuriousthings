@@ -1,0 +1,17 @@
+<div class="page-wrapper">
+
+    <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: 'Products' } %>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-body">
+                    <%= render 'form', product: @product %>
+
+                    <%= link_to 'Back', admin_products_path %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,15 @@
+<%
+    links = {
+      :products => admin_products_path,
+      :articles => admin_posts_path
+    }
+%> 
+<aside class="left-sidebar" data-sidebarbg="skin5">
+    <h1>Kirstys Shop</h1>
+
+    <ul class="menu">
+      <% links.each do |key, value| -%>
+        <li class="link"><%= link_to key.capitalize, value %></li>
+      <% end %>
+    </ul>
+</aside>
