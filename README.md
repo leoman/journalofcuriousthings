@@ -1,24 +1,21 @@
-# README
+# JournalOfCuriousThings
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### To run the application, please follow these steps.
 
-Things you may want to cover:
+* have Ruby 2.6.3, rbenv and git installed.
 
-* Ruby version
+    
+    gem install rails -v 6.0.2.1
 
-* System dependencies
+    rbenv rehash
 
-* Configuration
+    git clone git@github.com:leoman/journalofcuriousthings.git
 
-* Database creation
+    cd journalofcuriousthings
 
-* Database initialization
+    rbenv local 2.6.3
 
-* How to run the test suite
+    rails db:setup
 
-* Services (job queues, cache servers, search engines, etc.)
+    rails s
 
-* Deployment instructions
-
-* ...
