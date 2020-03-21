@@ -1,4 +1,4 @@
-class Admin::PostsController < ActionController::Base
+class Admin::PostsController < ApplicationController
     before_action :set_post, only: [:show, :edit, :update, :destroy]
 
     def index
@@ -21,7 +21,7 @@ class Admin::PostsController < ActionController::Base
     
         respond_to do |format|
           if @post.save
-            format.html { redirect_to @post, notice: 'Post was successfully created.' }
+            format.html { redirect_to admin_post_path(@post), notice: 'Post was successfully created.' }
             format.json { render :show, status: :created, location: @post }
           else
             format.html { render :new }
@@ -45,7 +45,7 @@ class Admin::PostsController < ActionController::Base
     def destroy
         @post.destroy
         respond_to do |format|
-          format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+          format.html { redirect_to admin_posts_url, notice: 'Post was successfully destroyed.' }
           format.json { head :no_content }
         end
     end
