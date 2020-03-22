@@ -1,5 +1,6 @@
 class Admin::PostsController < ApplicationController
   TITLE = "Posts"
+  layout "admin"
 
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_title, only: [:index, :show, :new, :edit]

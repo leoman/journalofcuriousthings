@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   # resources :widgets
-  # resources :products
 
+  get 'posts/(/:page)', to: 'posts#index', defaults: { page: '0' }, constraints: { page: /[0-9]/ }
+  resources :posts
+  
+  
   namespace :admin do
     resources :products, :posts
   end

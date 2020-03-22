@@ -1,5 +1,6 @@
 class Admin::ProductsController < ApplicationController
   TITLE = "Products"
+  layout "admin"
 
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :set_title, only: [:index, :show, :new, :edit]
