@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # resources :widgets
 
   get 'posts/(/:page)', to: 'posts#index', defaults: { page: '0' }, constraints: { page: /[0-9]/ }
   resources :posts
