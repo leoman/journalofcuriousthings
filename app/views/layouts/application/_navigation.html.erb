@@ -1,0 +1,14 @@
+<%
+    navLinks = [
+      { name: 'Home', url: '/' },
+      { name: 'Store', url: products_path }
+    ] 
+%>
+
+<div class="navigation">
+  <ul class="menu">
+    <% navLinks.each do |link| %>
+      <li class="link"><%= link_to link[:name], link[:url] %></li>
+    <% end %>
+  </ul>
+</div>

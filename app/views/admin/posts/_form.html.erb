@@ -1,39 +1,86 @@
-<%= form_with(model: post, url: link, local: true, class: 'form-horizontal m-t-30') do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<%= form_with(model: post, url: link, local: true, class: 'bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4') do |form| %>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    
+    <% if post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-        <% post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <%= form.label :title, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
+      <%= form.text_field :title, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white' %>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <%= form.label :subtitle, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
+      <%= form.text_field :subtitle, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white' %>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <%= form.label :excerpt, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
+      <%= form.text_area :excerpt, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white', rows: 3 %>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <%= form.label :content, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
+      <%= form.text_area :content, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white', rows: 5 %>
+    </div>
+  </div>
+  
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <%= form.label :date, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
+      <%= form.datetime_select :date, {}, class: "appearance-none bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" %>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <%= form.label :status, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
+      <%= form.select(:status, options_for_select(Post.statuses, Post.status_to_i(post[:status])), {}, { :class => "block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" }) %>
+    </div>
+  </div>
+
+  <% if @post.mainImage.attached? %>
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <p class="w-full block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Current main image uploaded</p>
+        <img class="max-w-md" src="<%= (url_for(@post.mainImage)) %>" />
+      </div>
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: 'form-control' %>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">   
+      <%= form.file_field :mainImage %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= form.label :content %>
-    <%= form.text_area :content, class: 'form-control', rows: 5 %>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <input type="checkbox" class="ml-3 mr-3 mb-6 md:mb-0" name="agreement" value="agree">
+    <p class="text-grey">Make this post sticky</p>
   </div>
 
-  <div class="form-group">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <%= form.submit 'Submit', class: "flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= form.label :status %>
-    <%= form.select(:status, options_for_select(Post.statuses, Post.status_to_i(post[:status]))) %>
-  </div>
-
-  <div class="form-group">
-    <%= form.submit %>
-  </div>
 <% end %>
-
-<%= post.inspect %>

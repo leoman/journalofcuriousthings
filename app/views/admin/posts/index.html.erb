@@ -1,48 +1,57 @@
-<div class="page-wrapper">
+<div class="bg-white rounded-t-lg overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center flex-col">
 
-    <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
-    
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Please view and edit individual posts here.</h4>
-                        <p id="notice"><%= notice %></p>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th colspan="3"></th>
-                                </tr>
-                            </thead>
-                        
-                            <tbody>
-                                <% @posts.each do |post| %>
-                                <tr>
-                                    <td><%= post.title %></td>
-                                    <td><%= post.date.to_s(:long) %></td>
-                                    <td><%= post.status.capitalize %></td>
-                                    <td><%= link_to 'Show', admin_post_path(post) %></td>
-                                    <td><%= link_to 'Edit', edit_admin_post_path(post) %></td>
-                                    <td><%= link_to 'Destroy', admin_post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                                </tr>
-                                <% end %>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card-body">                  
-                        <br>
-                        <%= link_to 'New Post', new_admin_post_path %>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
+
+  <div class="bg-white w-full md:w-1/2 p-3 mb-6 md">
+    <h4 class="card-title">Please view and edit individual posts here.</h4>
+    <p id="notice"><%= notice %></p>
+  </div>
+
+  <div class="bg-white w-full md:w-1/2 p-3 mb-6 md">
+    <div class="inline-flex">
+      <%= link_to 'New Post', new_admin_post_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" %>
     </div>
+  </div>
+
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">  
+    
+    
+            
+    <div class="w-full">
+      <table class="table-auto w-full">
+        <thead>
+          <tr>
+            <th class="px-4 py-2">Title</th>
+            <th class="px-4 py-2">Date</th>
+            <th class="px-4 py-2">Status</th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+                <td class="border px-4 py-2"><%= post.title %></td>
+                <td class="border px-4 py-2"><%= post.date.to_s(:long) %></td>
+                <td class="border px-4 py-2"><%= post.status.capitalize %></td>
+                <td class="border px-4 py-2 text-center">
+                  <%= link_to 'Preview', preview_admin_post_path(post), class: "bg-transparent border-solid inline-block hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" %>
+                </td>
+                <td class="border px-4 py-2 text-center">
+                  <%= link_to 'Show', admin_post_path(post), class: "bg-transparent border-solid inline-block hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" %>
+                </td>
+                <td class="border px-4 py-2 text-center">
+                  <%= link_to 'Edit', edit_admin_post_path(post), class: "bg-transparent border-solid inline-block hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" %>
+                </td>
+                <td class="border px-4 py-2 text-center">
+                  <%= link_to 'Destroy', admin_post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 border-solid inline-block hover:bg-red-700 text-white font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded" %>
+                </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 
 </div>

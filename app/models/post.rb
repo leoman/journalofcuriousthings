@@ -8,6 +8,8 @@ class Post < ApplicationRecord
 
     STATUS_PUBLISHED = Post.statuses.first.first
 
+    has_one_attached :mainImage
+
     def self.status_to_i(status)
         Post.statuses[status]
     end

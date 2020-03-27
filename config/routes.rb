@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
 
   get 'posts/(/:page)', to: 'posts#index', defaults: { page: '0' }, constraints: { page: /[0-9]/ }
-  resources :posts
+  resources :posts, only: [:index]
+  resources :products, only: [:index]
   
   
   namespace :admin do
-    resources :products, :posts
+    resources :products, :posts do
+      member do
+        get :preview
+      end
+    end
   end
 
   # get '/admin/products', to: 'products#index'

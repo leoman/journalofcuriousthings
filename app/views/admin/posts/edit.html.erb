@@ -1,19 +1,13 @@
-<div class="page-wrapper">
+<div class="bg-white rounded-t-lg overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center flex-col">
 
   <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div class="card card-body">
+  <%= render 'form', post: @post, link: admin_post_path(@post) %>
 
-          <%= render 'form', post: @post, link: admin_post_path(@post) %>
-
-          <%= link_to 'Show', admin_post_path(@post.id) %> |
-          <%= link_to 'Back', admin_posts_path %>
-
-        </div>
-      </div>
+  <div class="bg-white w-full md:w-1/2 p-3 mb-6 md:mb-0">
+    <div class="inline-flex">
+      <%= link_to 'Show', admin_post_path(@post.id), class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l" %>
+      <%= link_to 'Back', admin_posts_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r" %>
     </div>
   </div>
 
