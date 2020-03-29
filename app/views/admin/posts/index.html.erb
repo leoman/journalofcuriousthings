@@ -2,14 +2,10 @@
 
   <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
 
-  <div class="bg-white w-full md:w-1/2 p-3 mb-6 md">
-    <h4 class="card-title">Please view and edit individual posts here.</h4>
-    <p id="notice"><%= notice %></p>
-  </div>
-
-  <div class="bg-white w-full md:w-1/2 p-3 mb-6 md">
+  <div class="bg-white w-full p-3 mb-6 md">
     <div class="inline-flex">
       <%= link_to 'New Post', new_admin_post_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" %>
+      <p id="notice"><%= notice %></p>
     </div>
   </div>
 

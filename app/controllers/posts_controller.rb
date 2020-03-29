@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :set_page, :set_total, only: [:index]
  
   def index
-    @posts = Post.where(:status => Post::STATUS_PUBLISHED).limit(POSTS_PER_PAGE).offset(@page * POSTS_PER_PAGE)
+    @posts = Post.where(:status => Post::STATUS_PUBLISHED).order(:sticky, date: :desc).limit(POSTS_PER_PAGE).offset(@page * POSTS_PER_PAGE)
   end
   
   private

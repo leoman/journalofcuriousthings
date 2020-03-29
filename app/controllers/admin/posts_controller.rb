@@ -70,7 +70,7 @@ class Admin::PostsController < ApplicationController
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def post_params
-          postParams = params.require(:post).permit(:title, :content, :date, :sticky, :mainImage)
+          postParams = params.require(:post).permit(:title, :content, :date, :sticky, :subtitle, :excerpt, :mainImage)
           postParams[:status] = params[:post][:status].to_i
           postParams
       end
