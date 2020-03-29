@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  POSTS_PER_PAGE = 1
+  POSTS_PER_PAGE = 10
 
   before_action :set_page, :set_total, only: [:index]
  

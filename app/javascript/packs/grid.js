@@ -10,7 +10,6 @@ function resizeAllGridItems(){
   gridWrapper = document.getElementById('gridView');
   if(gridWrapper) {
     allItems = document.getElementById('gridView').getElementsByClassName("item");
-    console.log(allItems.length, allItems);
     for(x=0;x<allItems.length;x++){
       resizeGridItem(allItems[x]);
     }
@@ -22,14 +21,39 @@ function resizeInstance(instance){
   resizeGridItem(item);
 }
 
-window.onload = resizeAllGridItems();
+// window.onload = resizeAllGridItems();
 window.addEventListener("resize", resizeAllGridItems);
 document.addEventListener('DOMContentLoaded', (event) => resizeAllGridItems());
-setTimeout(() => {
-  resizeAllGridItems();
-}, 1000);
+// setTimeout(() => {
+//   resizeAllGridItems();
+// }, 1000);
 
-allItems = document.getElementsByClassName("item");
-for(x=0;x<allItems.length;x++){
-  imagesLoaded( allItems[x], resizeInstance);
-}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  let counter = 0;
+  if(document.getElementById('gridView')) {
+
+    function incrementCounter() {
+      counter++;
+      if ( counter === length ) {
+        console.log('handle the resizeAllGridItems');
+        resizeAllGridItems();
+      }
+    }
+
+    console.log('handle the grid!');
+    const grid = document.getElementById('gridView');
+    const images = grid.getElementsByTagName('img');
+    const length = images.length;
+
+    [].forEach.call( images, function( image ) {
+      if(image.complete) {
+        incrementCounter();
+      } else {
+        image.addEventListener( 'load', incrementCounter, false );
+      }
+    });
+  }
+
+});

@@ -5,15 +5,21 @@
   </head>
 
   <body>
-    <div class="w-full max-w-screen-xl mx-auto">
+    <div class="w-full">
 
     <div>
-      <%= render "layouts/admin/side_menu" %>
-      <%= render partial: "layouts/shared/flash_messages" %>
-      <%= yield %>
-    </div>
+      <%= render "layouts/admin/header" %>
 
-    <!-- <%= debug(params) if Rails.env.development? %> -->
+      <%= render partial: "layouts/shared/flash_messages" %>
+
+      <div class="w-full bg-gray-200 main-wrapper">
+        <div class="w-full container mx-auto">
+          <div class="max-w-screen-xl ">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
 
     </div>
   </body>

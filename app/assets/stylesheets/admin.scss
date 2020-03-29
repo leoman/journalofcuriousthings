@@ -6,8 +6,6 @@ h1 {
   font-family: 'Satisfy', cursive;
 }
 
-
-
 table {
   box-sizing: border-box;
   border: 0 solid #e2e8f0 /* 2; */;
@@ -27,4 +25,8 @@ table.table-auto td {
   border: 1px solid #e2e8f0 /* 2; */;
   color: #2d3748;
   padding: .75rem;
+}
+
+.main-wrapper {
+  padding-top: 14rem;
 }
