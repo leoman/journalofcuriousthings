@@ -6,7 +6,7 @@ class Admin::PostsController < ApplicationController
   before_action :set_title, only: [:index, :show, :new, :edit]
 
   def index
-    @posts = Post.all
+    @posts = Post.order(:sticky, date: :desc)
   end
 
   def show

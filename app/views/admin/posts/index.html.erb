@@ -20,6 +20,7 @@
             <th class="px-4 py-2">Title</th>
             <th class="px-4 py-2">Date</th>
             <th class="px-4 py-2">Status</th>
+            <th class="px-4 py-2">Sticky</th>
             <th colspan="4"></th>
           </tr>
         </thead>
@@ -30,6 +31,7 @@
                 <td class="border px-4 py-2"><%= post.title %></td>
                 <td class="border px-4 py-2"><%= post.date.to_s(:long) %></td>
                 <td class="border px-4 py-2"><%= post.status.capitalize %></td>
+                <td class="border px-4 py-2"><%= post.sticky %></td>
                 <td class="border px-4 py-2 text-center">
                   <%= link_to 'Preview', preview_admin_post_path(post), class: "bg-transparent border-solid inline-block hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" %>
                 </td>
