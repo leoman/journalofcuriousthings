@@ -1,16 +1,23 @@
 class Post < ApplicationRecord
-    enum status: [:published, :unpublished]
 
-    validates :title, presence: true, length: { minimum: 1, maximum: 120 }, uniqueness: { message: "The title must be unique" }
-    validates :content, presence: true, length: { minimum: 1 }
-    validates :date, presence: true
-    validates :status, presence: true
+  after_validation :set_slug, only: [:create, :update]
 
-    STATUS_PUBLISHED = Post.statuses.first.first
+  enum status: [:published, :unpublished]
 
-    has_one_attached :mainImage
+  validates :title, presence: true, length: { minimum: 1, maximum: 120 }, uniqueness: { message: "The title must be unique" }
+  validates :content, presence: true, length: { minimum: 1 }
+  validates :date, presence: true
+  validates :status, presence: true
 
-    def self.status_to_i(status)
-        Post.statuses[status]
-    end
+  STATUS_PUBLISHED = Post.statuses.first.first
+
+  has_one_attached :mainImage
+
+  def self.status_to_i(status)
+    Post.statuses[status]
+  end
+
+  def set_slug
+    self.slug = title.to_s.parameterize
+  end
 end
