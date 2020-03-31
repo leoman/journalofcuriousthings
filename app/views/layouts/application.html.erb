@@ -5,11 +5,14 @@
   </head>
 
   <body>
-    <div class="w-full max-w-screen-xl mx-auto">
+    <div>
       <%= render "layouts/application/header" %>
       <%= render partial: "layouts/shared/flash_messages" %>
       <%= render "layouts/application/navigation" %>
-      <%= yield %>
+
+      <div class="w-full max-w-screen-xl mx-auto">
+        <%= yield %>
+      </div>
     </div>
 
     </div>
