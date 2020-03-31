@@ -7,6 +7,10 @@ class PostsController < ApplicationController
   def index
     @posts = Post.where(:status => Post::STATUS_PUBLISHED).order(:sticky, date: :desc).limit(POSTS_PER_PAGE).offset(@page * POSTS_PER_PAGE)
   end
+
+  def show
+    @post = Post.find_by slug: params[:slug]
+  end
   
   private
     def set_page

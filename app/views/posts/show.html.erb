@@ -1,0 +1,20 @@
+<div class="container flex post">
+
+  <div class="w-4/5">
+  
+    <div class="title">
+      <h2><%= @post.title %></h2>
+    </div>
+
+    <div class="image">
+      <% if @post.mainImage.attached? %>
+        <img src="<%= (url_for(@post.mainImage)) %>" />
+      <% end %>
+    </div>
+  </div>
+
+  <div class="">
+    side
+  </div>
+
+</div>

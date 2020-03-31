@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'posts/(/:page)', to: 'posts#index', defaults: { page: '0' }, constraints: { page: /[0-9]/ }
+  get '/(/:page)', to: 'posts#index', defaults: { page: '0' }, constraints: { page: /[0-9]/ }
+  get '/posts/:slug', action: :show, controller: 'posts'
   resources :posts, only: [:index]
   resources :products, only: [:index]
   
