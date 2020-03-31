@@ -19,11 +19,14 @@
 
 
 header {
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
 
-  div {
+  .title {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .text-wrapper {
     position: relative;
     max-width: 75%;
     margin: 0 auto;
@@ -51,6 +54,34 @@ header {
     font-weight: lighter;
   }
 
+  .image-gallery {
+
+    display: flex;
+
+    .image-wrapper {
+      width: calc(100% / 6);
+      display: block;
+      position: relative;
+      margin: auto;
+      overflow: hidden;
+
+      img {
+        max-width: 100%;
+        transition: all 1.0s;
+        display: block;
+        width: 100%;
+        height: auto;
+        transform: scale(1);
+
+        &:hover {
+          transform: scale(1.4);
+        }
+      }
+
+     
+    }
+  }
+
 }
 
 .satisfy {
@@ -60,11 +91,22 @@ header {
 .post {
 
   .title {
-    font-size: 2.4rem;
-    line-height: 2.4rem;
-    margin: 60px 30px 60px  ;
-    text-align: center;
-    font-family: 'Satisfy', cursive;
+
+    h3 {
+      font-size: 2.4rem;
+      line-height: 2.4rem;
+      margin: 60px 30px 20px ;
+      text-align: center;
+      font-family: 'Satisfy', cursive;
+    }
+
+    h4 {
+      font-size: 1.4rem;
+      line-height: 1.4rem;
+      margin: 0 0 60px;
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+    }
   }
 
   .image {

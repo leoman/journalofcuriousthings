@@ -1,6 +1,31 @@
+<%
+
+  images = [
+    '40704459053_484c4e722a_b.jpg',
+    '40704465663_2af51924d4_b.jpg',
+    '47670826161_ec8b4b7a5a_b.jpg',
+    '47670828331_9f95a0c372_b.jpg',
+    '47670840171_682f365c88_b.jpg',
+    '47670841351_bd60c95ca1_b.jpg'
+  ]
+
+%>
+
+
 <header>
-  <div class="text-wrapper">
-    <h1>journal of curious things</h1>
-    <h2>Adventures in scrapbooking</h2>
+
+  <div class="title">
+    <div class="text-wrapper">
+      <h1>journal of curious things</h1>
+      <h2>Adventures in scrapbooking</h2>
+    </div>
+  </div>
+
+  <div class="image-gallery">
+    <% images.each do | image | %>
+      <div class="image-wrapper">
+        <%= image_tag "posts/#{image}", class: 'image' %>
+      </div>
+    <% end %>
   </div>
 </header>
