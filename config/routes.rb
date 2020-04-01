@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   get '/posts/:slug', action: :show, controller: 'posts'
   resources :posts, only: [:index]
   resources :products, only: [:index]
-  
+
+  root 'posts#index' 
+  # add this line to link tags to posts with the respective tag
+  get 'tags/:tag', to: 'posts#tags', as: :tag
   
   namespace :admin do
-    resources :products, :posts do
+    resources :tags, :products, :posts do
       member do
         get :preview
       end

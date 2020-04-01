@@ -68,9 +68,14 @@ class Admin::PostsController < ApplicationController
         @title = Admin::PostsController::TITLE
       end
 
+      def split_post_tags(tags)
+        tags.split(',')
+      end
+
       # Never trust parameters from the scary internet, only allow the white list through.
-      def post_params
-          postParams = params.require(:post).permit(:title, :content, :date, :sticky, :subtitle, :excerpt, :mainImage)
+      def post_params 
+          postParams = params.require(:post).permit(:title, :content, :date, :sticky, :subtitle, :excerpt, :mainImage, :tag_list, :tag)
+          postParams[:tag_ids] = split_post_tags(params[:post][:tag_ids])
           postParams[:status] = params[:post][:status].to_i
           postParams
       end

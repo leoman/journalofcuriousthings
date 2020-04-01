@@ -11,6 +11,10 @@ class PostsController < ApplicationController
   def show
     @post = Post.find_by slug: params[:slug]
   end
+
+  def tags
+
+  end
   
   private
     def set_page

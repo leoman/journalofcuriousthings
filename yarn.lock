@@ -6412,6 +6412,11 @@ select-hose@^2.0.0:
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
   integrity sha1-Yl2GWPhlr0Psliv8N2o3NZpJlMo=
 
+select-pure@^0.6.0-alpha.0:
+  version "0.6.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/select-pure/-/select-pure-0.6.0-alpha.0.tgz#0a7ed327f2519e897a4f7cc496f0760cdc2ec00a"
+  integrity sha512-U4V/1RjLmhy78+x0zw4P+J7OmLZ6NdPt/Kisgt85NhU/A28MiJefYf1/5p9nR9FgxM2pX1WrX37kaOLfDLHuwg==
+
 selfsigned@^1.10.7:
   version "1.10.7"
   resolved "https://registry.yarnpkg.com/selfsigned/-/selfsigned-1.10.7.tgz#da5819fd049d5574f28e88a9bcc6dbc6e6f3906b"
