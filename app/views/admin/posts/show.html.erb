@@ -13,6 +13,15 @@
       </div>
     </div>
 
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          <strong>Subtitle:</strong>
+          <%= @post.subtitle %>
+        </p>
+      </div>
+    </div>
+
     <% if @post.mainImage.attached? %>
       <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -24,10 +33,49 @@
 
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <p><small>Tags: <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small</p>
+        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          <strong>Excerpt:</strong>
+          <%= @post.excerpt %>
+        </p>
       </div>
     </div>
     
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          <strong>Date:</strong>
+          <%= @post.date %>
+        </p>
+      </div>
+    </div>
+    
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          <strong>Status:</strong>
+          <%= @post.status %>
+        </p>
+      </div>
+    </div>
+    
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          <strong>Sticky:</strong>
+          <%= @post.sticky %>
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          <strong>Tags:</strong>
+          <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+        </p>
+      </div>
+    </div>
+
   </div>
 
   <div class="bg-white w-full md:w-1/2 p-3 mb-6 md:mb-0">
@@ -36,7 +84,5 @@
       <%= link_to 'Back', admin_posts_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r" %>
     </div>
   </div>
-
-  <%= @post.inspect %>
 
 </div>

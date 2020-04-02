@@ -1,182 +1,26 @@
-<div id="gridView">
+<div class="container flex post">
 
-  <div class="grid">
-
-    <div class="item blog">
-      <div class="content">
-        <div class="effect-wrapper">
-          <div class="image">
-            <%= image_tag "posts/Video-1-FI2-800x800.jpg" %>
-          </div>
-          <div class="post-title">
-            <h3>Blog Post Title</h3>
-          </div>
-          <div class="overlay">
-            <div class="overlay-content">
-              <div class="title">
-                <h3>More information</h3>
-              </div>
-              <hr />
-              <div class="desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce facilisis fringilla laoreet. Mauris mattis enim ut felis consectetur, vitae lacinia enim auctor. Aenean vitae fermentum odio.</p>
-              </div>
-              <hr />
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="w-3/5">
+  
+    <div class="title">
+      <h3><%= @post.title %></h3>
+      <h4><%= @post.subtitle %></h4>
     </div>
 
-    <div class="item blog">
-      <div class="content">
-        <div class="effect-wrapper">
-          <div class="image">
-            <%= image_tag "posts/Cards-3-Christmas-VIDEO-800x540" %>
-          </div>
-          <div class="post-title">
-            <h3>Blog Post Title</h3>
-          </div>
-          <div class="overlay">
-            <div class="overlay-content">
-              <div class="title">
-                <h3>More information</h3>
-              </div>
-              <hr />
-              <div class="desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce facilisis fringilla laoreet. Mauris mattis enim ut felis consectetur, vitae lacinia enim auctor. Aenean vitae fermentum odio.</p>
-              </div>
-              <hr />
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="image">
+      <% if @post.mainImage.attached? %>
+        <img src="<%= (url_for(@post.mainImage)) %>" />
+      <% end %>
     </div>
 
-    <div class="item blog">
-      <div class="content">
-        <div class="effect-wrapper">
-          <div class="image">
-            <%= image_tag "posts/Video-2-FI-800x800.jpg" %>
-          </div>
-          <div class="post-title">
-            <h3>Blog Post Title</h3>
-          </div>
-          <div class="overlay">
-            <div class="overlay-content">
-              <div class="title">
-                <h3>More information</h3>
-              </div>
-              <hr />
-              <div class="desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce facilisis fringilla laoreet. Mauris mattis enim ut felis consectetur, vitae lacinia enim auctor. Aenean vitae fermentum odio.</p>
-              </div>
-              <hr />
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="post-content">
+      <%= raw @post.content %>
     </div>
 
-    <div class="item blog">
-      <div class="content">
-        <div class="effect-wrapper">
-          <div class="image">
-            <%= image_tag "posts/Banner-1-800x520.jpg" %>
-          </div>
-          <div class="post-title">
-            <h3>Blog Post Title</h3>
-          </div>
-          <div class="overlay">
-            <div class="overlay-content">
-              <div class="title">
-                <h3>More information</h3>
-              </div>
-              <hr />
-              <div class="desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce facilisis fringilla laoreet. Mauris mattis enim ut felis consectetur, vitae lacinia enim auctor. Aenean vitae fermentum odio.</p>
-              </div>
-              <hr />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
 
-    <div class="item blog">
-      <div class="content">
-        <div class="effect-wrapper">
-          <div class="image">
-            <%= image_tag "posts/FI2.jpg" %>
-          </div>
-          <div class="post-title">
-            <h3>Blog Post Title</h3>
-          </div>
-          <div class="overlay">
-            <div class="overlay-content">
-              <div class="title">
-                <h3>More information</h3>
-              </div>
-              <hr />
-              <div class="desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce facilisis fringilla laoreet. Mauris mattis enim ut felis consectetur, vitae lacinia enim auctor. Aenean vitae fermentum odio.</p>
-              </div>
-              <hr />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="item blog">
-      <div class="content">
-        <div class="effect-wrapper">
-          <div class="image">
-            <%= image_tag "posts/kyle-peyton-412616-unsplash-800x800.jpg" %>
-          </div>
-          <div class="post-title">
-            <h3>Blog Post Title</h3>
-          </div>
-          <div class="overlay">
-            <div class="overlay-content">
-              <div class="title">
-                <h3>More information</h3>
-              </div>
-              <hr />
-              <div class="desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce facilisis fringilla laoreet. Mauris mattis enim ut felis consectetur, vitae lacinia enim auctor. Aenean vitae fermentum odio.</p>
-              </div>
-              <hr />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="item blog">
-      <div class="content">
-        <div class="effect-wrapper">
-          <div class="image">
-            <%= image_tag "posts/Video-1-FI2-800x800.jpg" %>
-          </div>
-          <div class="post-title">
-            <h3>Blog Post Title</h3>
-          </div>
-          <div class="overlay">
-            <div class="overlay-content">
-              <div class="title">
-                <h3>More information</h3>
-              </div>
-              <hr />
-              <div class="desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce facilisis fringilla laoreet. Mauris mattis enim ut felis consectetur, vitae lacinia enim auctor. Aenean vitae fermentum odio.</p>
-              </div>
-              <hr />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class="">
+    side
   </div>
 
 </div>
