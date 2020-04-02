@@ -1,3 +1,8 @@
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
 .w-full {
   width: 100%!important;
 }
@@ -34,11 +39,11 @@ header {
   }
 
   h1 {
-    font-size: 4rem;
-    line-height: 4rem;
+    font-size: 6rem;
+    line-height: 5rem;
     margin: 40px 0 60px;
     text-align: center;
-    font-family: 'Satisfy', cursive;
+    font-family: 'Sacramento', cursive;
   }
 
   h2 {
@@ -47,11 +52,11 @@ header {
     margin: 0;
     text-align: center;
     text-transform: uppercase;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 300;
     position: absolute;
     right: 80px;
     bottom: 20px;
-    font-weight: lighter;
   }
 
   .image-gallery {
@@ -72,6 +77,8 @@ header {
         width: 100%;
         height: auto;
         transform: scale(1);
+        max-height: 100px;
+        object-fit: cover;
 
         &:hover {
           transform: scale(1.4);
@@ -84,8 +91,8 @@ header {
 
 }
 
-.satisfy {
-  font-family: 'Satisfy', cursive;
+.sacramento {
+  font-family: 'Sacramento', cursive;
 }
   
 .post {
@@ -97,7 +104,7 @@ header {
       line-height: 2.4rem;
       margin: 60px 30px 20px ;
       text-align: center;
-      font-family: 'Satisfy', cursive;
+      font-family: 'Sacramento', cursive;
     }
 
     h4 {
@@ -105,7 +112,7 @@ header {
       line-height: 1.4rem;
       margin: 0 0 60px;
       text-align: center;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Heebo', sans-serif;
     }
   }
 
@@ -130,15 +137,14 @@ header {
 
   .link {
     color: #fff;
-    font-size: 1.15rem;
-    line-height: 1.15rem;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
     padding: .7rem;
     margin: .5rem 1rem; 
     font-weight: 700;
-    font-family: 'Lato', sans-serif;
-    font-size: 14px;
+    font-family: 'Barlow Condensed', sans-serif;
     text-transform: uppercase;
-    font-weight: 800;
+    font-weight: 400;
     letter-spacing: 2px;
     text-shadow: 2px 2px 1px rgba(235, 64, 52, 0.9);
   }
@@ -193,5 +199,30 @@ header {
     width: 100%;
     transition-duration: .2s;
   }
+
+}
+
+
+.post-content {
+
+  font-size: 21px;
+  font-family: 'Heebo', sans-serif;
+  letter-spacing: -0.004em;
+  line-height: 1.58;
+  word-break: break-word;
+  color: rgba(0, 0, 0, 0.84);
+  font-weight: 400;
+
+    p {
+      font-size: 21px;
+      font-family: 'Heebo', sans-serif;
+      letter-spacing: -0.004em;
+      line-height: 1.58;
+      word-break: break-word;
+      color: rgba(0, 0, 0, 0.84);
+      font-weight: 400;
+      margin-bottom: -0.46em;
+      margin-top: 2em;
+    }
 
 }
