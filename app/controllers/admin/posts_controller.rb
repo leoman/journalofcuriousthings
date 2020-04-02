@@ -1,12 +1,14 @@
 class Admin::PostsController < ApplicationController
   TITLE = "Posts"
+  POSTS_PER_PAGE = 10
   layout "admin"
 
   before_action :set_post, only: [:show, :edit, :update, :destroy, :preview]
   before_action :set_title, only: [:index, :show, :new, :edit]
+  before_action :set_page, :set_total, :set_total_pages, only: [:index]
 
   def index
-    @posts = Post.order(:sticky, date: :desc)
+    @posts = Post.order(:sticky, date: :desc).limit(POSTS_PER_PAGE).offset(@page * POSTS_PER_PAGE)
   end
 
   def show
@@ -78,5 +80,21 @@ class Admin::PostsController < ApplicationController
           postParams[:tag_ids] = split_post_tags(params[:post][:tag_ids])
           postParams[:status] = params[:post][:status].to_i
           postParams
+      end
+
+      def set_page
+        @page = params[:page].to_i || 0
+      end
+  
+      def set_total
+        @total = Post.all.size
+      end
+
+      def set_total_pages
+        if @total <= POSTS_PER_PAGE
+          @paginated = false
+        else
+          @paginated = (@total.to_f / POSTS_PER_PAGE.to_f).ceil 
+        end
       end
 end
