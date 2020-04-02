@@ -8,7 +8,7 @@ class Admin::PostsController < ApplicationController
   before_action :set_page, :set_total, :set_total_pages, only: [:index]
 
   def index
-    @posts = Post.order(:sticky, date: :desc).limit(POSTS_PER_PAGE).offset(@page * POSTS_PER_PAGE)
+    @posts = Post.order(sticky: :desc, date: :desc).limit(POSTS_PER_PAGE).offset(@page * POSTS_PER_PAGE)
   end
 
   def show
@@ -56,7 +56,7 @@ class Admin::PostsController < ApplicationController
   end
 
   def preview
-    # _layout "default"
+    @post = Post.find(params[:id])
     render layout: "application"
   end
 
