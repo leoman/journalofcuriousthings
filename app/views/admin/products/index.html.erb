@@ -1,50 +1,65 @@
-<div class="page-wrapper">
+<div class="bg-white rounded-t-lg overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center flex-col">
 
-    <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
-    
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Please view and edit individual products here.</h4>
-                        <p id="notice"><%= notice %></p>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                <th>Title</th>
-                                <th>Subtitle</th>
-                                <th>Price</th>
-                                <th>Price</th>
-                                <th colspan="3"></th>
-                                </tr>
-                            </thead>
-                        
-                            <tbody>
-                                <% @products.each do |product| %>
-                                <tr>
-                                    <td><%= product.title %></td>
-                                    <td><%= product.subtitle %></td>
-                                    <td><%= product.price %></td>
-                                    <td>tester</td>
-                                    <td><%= link_to 'Show', admin_product_path(product) %></td>
-                                    <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
-                                    <td><%= link_to 'Destroy', admin_product_path(product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                                </tr>
-                                <% end %>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card-body">                  
-                        <br>
-                        <%= link_to 'New Product', new_admin_product_path %>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
+
+  <div class="bg-white w-full p-3 mb-6 md">
+    <div class="inline-flex">
+      <%= link_to 'New Product', new_admin_product_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" %>
+      <p id="notice"><%= notice %></p>
     </div>
+  </div>
+
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">  
+            
+    <div class="w-full">
+      <table class="table-auto w-full">
+        <thead>
+          <tr>
+            <th class="px-4 py-2">Title</th>
+            <th class="px-4 py-2">Date</th>
+            <th class="px-4 py-2">Type</th>
+            <th class="px-4 py-2">Status</th>
+            <th class="px-4 py-2">Price</th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <% if @products %>
+            <% @products.each do |product| %>
+              <tr>
+                <td class="border px-4 py-2"><%= product.title %></td>
+                <td class="border px-4 py-2"><%= product.date.to_s(:long) %></td>
+                <td class="border px-4 py-2"><%= product.product_type.capitalize %></td>
+                <td class="border px-4 py-2"><%= product.status.capitalize %></td>
+                <td class="border px-4 py-2 text-center">
+                  <%= link_to 'Preview', preview_admin_product_path(product), class: "bg-transparent border-solid inline-block hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" %>
+                </td>
+                <td class="border px-4 py-2 text-center">
+                  <%= link_to 'Show', admin_product_path(product), class: "bg-transparent border-solid inline-block hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" %>
+                </td>
+                <td class="border px-4 py-2 text-center">
+                  <%= link_to 'Edit', edit_admin_product_path(product), class: "bg-transparent border-solid inline-block hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" %>
+                </td>
+                <td class="border px-4 py-2 text-center">
+                  <%= link_to 'Destroy', admin_product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 border-solid inline-block hover:bg-red-700 text-white font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded" %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <% if @paginated %>
+    <div class="bg-white w-full md:w-1/2 p-3 mb-6 md:mb-0">
+      <div class="inline-flex">
+        <%= link_to 'Previous', { controller: "products", action: "index", page: @page - 1 }, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l" unless @page <= 0 %>
+        <%= link_to "Next", { controller: "products", action: "index", page: @page + 1 }, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r" unless @page >= @paginated -1  %>
+      </div>
+    </div>
+  <% end %>
 
 </div>

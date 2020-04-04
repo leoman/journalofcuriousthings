@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :set_page, :set_total, :set_total_pages, only: [:index]
  
   def index
-    @posts = Post.where(:status => Post::STATUS_PUBLISHED).order(sticky: :desc, date: :desc).limit(POSTS_PER_PAGE).offset(@page * POSTS_PER_PAGE)
+    @posts = Post.where(:status => Post.statuses[:published]).order(sticky: :desc, date: :desc).limit(POSTS_PER_PAGE).offset(@page * POSTS_PER_PAGE)
   end
 
   def show
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     end
 
     def set_total
-      @total = Post.where(:status => Post::STATUS_PUBLISHED).size
+      @total = Post.where(:status => Post.statuses[:published]).size
     end
 
     def set_total_pages

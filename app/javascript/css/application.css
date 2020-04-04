@@ -3,3 +3,62 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+.form {
+  @apply bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4;
+}
+
+.form-wrapper {
+  @apply flex flex-wrap -mx-3 mb-6;
+}
+
+.form-fields-wrapper {
+  @apply w-full px-3 mb-6;
+}
+
+.form-label {
+  @apply block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2
+}
+
+.form-field {
+  @apply appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight
+}
+
+.form-field:focus {
+  @apply outline-none bg-white;
+}
+
+.form-field__checkbox {
+  @apply ml-3 mr-3 mb-6 
+}
+
+.form-field__select {
+  @apply block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight
+}
+
+.form-field__select:focus {
+  @apply outline-none bg-white border-gray-500;
+}
+
+.form-field__datetime {
+  @apply appearance-none bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight;
+}
+
+.form-field__datetime:focus {
+  @apply outline-none bg-white;
+}
+
+.form-button {
+  @apply flex-shrink-0 bg-teal-500  border-teal-500  text-sm border-4 text-white py-1 px-2 rounded 
+}
+
+.form-button:hover {
+  @apply bg-teal-700 border-teal-700;
+}
+
+@media (min-width: 768px) {
+  .form-fields-wrapper,
+  .form-field__checkbox {
+    margin-bottom: 0;
+  }
+}

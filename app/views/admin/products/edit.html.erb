@@ -1,68 +1,14 @@
-<div class="bg-white rounded-t-lg overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center">
+<div class="bg-white rounded-t-lg overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center flex-col">
 
-    <aside class="left-sidebar" data-sidebarbg="skin5">
+  <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
 
-        <h1>Kirstys Shop</h1>
-        <!-- Sidebar scroll-->
-        <div class="scroll-sidebar">
-            <!-- Sidebar navigation-->
-            <nav class="sidebar-nav">
-                <ul id="sidebarnav">
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false">
-                            <i class="mdi mdi-av-timer"></i>
-                            <span class="hide-menu active">Home</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="active sidebar-link waves-effect waves-dark sidebar-link" href="pages-profile.html" aria-expanded="false">
-                            <i class="mdi mdi-account-network"></i>
-                            <span class="hide-menu">Products</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- End Sidebar navigation -->
-        </div>
-        <!-- End Sidebar scroll-->
-    </aside>
+  <%= render 'form', product: @product, link: admin_product_path(@product) %>
 
-    <div class="page-wrapper">
-
-        <div class="page-breadcrumb">
-            <div class="row">
-                <div class="col-5 align-self-center">
-                    <h4 class="page-title">Edit Product: <%= @product.title %> </h4>
-                </div>
-                <div class="col-7 align-self-center">
-                    <div class="d-flex align-items-center justify-content-end">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <%= link_to 'Products', admin_products_path %>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">Edit Product</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card card-body">
-                        <%= render 'form', product: @product %>
-
-                        <%= link_to 'Show', admin_products_path(@product.id) %> |
-                        <%= link_to 'Back', admin_products_path %>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+  <div class="bg-white w-full md:w-1/2 p-3 mb-6 md:mb-0">
+    <div class="inline-flex">
+      <%= link_to 'Show', admin_product_path(@product.id), class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l" %>
+      <%= link_to 'Back', admin_products_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r" %>
     </div>
+  </div>
 
 </div>

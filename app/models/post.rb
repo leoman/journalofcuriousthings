@@ -9,8 +9,6 @@ class Post < ApplicationRecord
   validates :date, presence: true
   validates :status, presence: true
 
-  STATUS_PUBLISHED = Post.statuses.first.first
-
   has_one_attached :mainImage
   has_many :taggings
   has_many :tags, through: :taggings

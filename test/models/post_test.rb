@@ -66,10 +66,6 @@ class PostTest < ActiveSupport::TestCase
     assert_equal 0, Post::status_to_i('published')
     assert_equal 1, Post::status_to_i('unpublished')
   end
-
-  test "STATUS_PUBLISHED const should return the published status" do
-    assert_equal 'published', Post::STATUS_PUBLISHED
-  end
   
   private
 
@@ -86,7 +82,7 @@ class PostTest < ActiveSupport::TestCase
     end
 
     def self.add_a_status(model)
-      model.status = Post::STATUS_PUBLISHED
+      model.status = Post.statuses[:published]
     end
 
 end

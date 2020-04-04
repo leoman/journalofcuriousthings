@@ -1,17 +1,12 @@
-<div class="page-wrapper">
+<div class="bg-white rounded-t-lg overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center flex-col">
 
     <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
+    
+    <%= render 'form', product: @product, link: admin_products_path(@product) %>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card card-body">
-                    <%= render 'form', product: @product %>
-
-                    <%= link_to 'Back', admin_products_path %>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <div class="bg-white w-full p-3 mb-6">
+      <div class="inline-flex">
+      <%= link_to 'Back', admin_products_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l" %>
+    </div> 
+    
 </div>
