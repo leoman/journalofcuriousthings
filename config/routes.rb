@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     get '/posts/page/(/:page)', to: 'posts#index', defaults: { page: '0' }, constraints: { page: /[0-9]/ }, as: :paginated
-    resources :tags, :products, :posts do
+    resources :tags, :themes, :products, :posts do
       member do
         get :preview
       end

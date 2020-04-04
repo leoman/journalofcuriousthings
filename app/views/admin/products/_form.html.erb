@@ -1,3 +1,6 @@
+<%= javascript_tag "myOptions = #{Theme.order(:name).collect {|p| [ p.name, p.id.to_s ] }};" %>
+<%= javascript_tag "currentValues = #{@product.themes.collect {|p| p.id.to_s }};" %>
+
 <%= form_with(model: product, url: link, local: true, class: 'form ') do |form| %>
 
   <% if product.errors.any? %>
@@ -63,6 +66,14 @@
     </div>
   </div>
 
+  <div class="form-wrapper">
+    <div class="form-fields-wrapper">
+      <input id="themes" type="hidden" value="" name="product[theme_ids]" />
+      <%= form.label :themes, class: "form-label" %>
+      <span class="multi-select"></span>
+    </div>
+  </div>
+
   <% if @product.mainImage.attached? %>
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full px-3 mb-6 md:mb-0">
@@ -85,3 +96,28 @@
   </div>
 
 <% end %>
+
+<script type="text/javascript">
+
+  const themesInput = document.getElementById('themes');
+
+  const transformMethod = values => values.map(([name, id]) => ({
+    value: id,
+    label: name
+  }));
+
+  const transformedOptions = transformMethod(myOptions);
+
+  const onChange = (values) => {
+    themesInput.value = `${values}`;
+  }
+
+  var instance = new SelectPure(".multi-select", {
+    options: transformedOptions,
+    multiple: true,
+    autocomplete: false,
+    icon: "fa fa-times",
+    value : currentValues,
+    onChange: onChange
+});
+</script>

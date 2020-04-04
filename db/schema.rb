@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_04_132913) do
+ActiveRecord::Schema.define(version: 2020_04_04_165539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2020_04_04_132913) do
     t.index ["title"], name: "index_posts_on_title"
   end
 
+  create_table "product_themes", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "theme_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_themes_on_product_id"
+    t.index ["theme_id"], name: "index_product_themes_on_theme_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -78,7 +87,15 @@ ActiveRecord::Schema.define(version: 2020_04_04_132913) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "themes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "product_themes", "products"
+  add_foreign_key "product_themes", "themes"
   add_foreign_key "taggings", "posts"
   add_foreign_key "taggings", "tags"
 end

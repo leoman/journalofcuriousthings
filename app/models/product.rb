@@ -13,6 +13,8 @@ class Product < ApplicationRecord
   validates :price, presence: true, numericality: true
 
   has_one_attached :mainImage
+  has_many :product_themes
+  has_many :themes, through: :product_themes
 
   def set_slug
     self.slug = title.to_s.parameterize
@@ -24,6 +26,24 @@ class Product < ApplicationRecord
 
   def self.product_type_to_i(product_type)
     self.product_types[product_type]
+  end
+
+  def self.tagged_with(name)
+    Theme.find_by!(name: name).products
+  end
+
+  def self.theme_counts
+    Theme.select('themes.*, count(product_themes.theme_id) as count').joins(:product_themes).group('product_themes.theme_id')
+  end
+
+  def theme_list
+    themes.map(&:name).join(', ')
+  end
+
+  def theme_list=(names)
+    self.themes = names.split(',').map do |n|
+      Theme.where(name: n.strip).first_or_create!
+    end
   end
 
 end
