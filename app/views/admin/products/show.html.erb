@@ -19,6 +19,26 @@
             <%= @product.price %>
           </p>
 
+          <% if @product.mainImage.attached? %>
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <p class="w-full block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Current main image uploaded</p>
+                <img class="max-w-md" src="<%= (url_for(@product.mainImage)) %>" />
+              </div>
+            </div>
+          <% end %>
+
+          <% if @product.images.attached? %>
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <p class="w-full block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Current images uploaded</p>
+                <% @product.images.each do |image| %> 
+                  <img class="max-w-md" src="<%= (url_for(image)) %>" />
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
           <%= @product.inspect %>
 
           <%= link_to 'Edit', edit_admin_product_path(@product) %> |

@@ -78,7 +78,7 @@ class Admin::ProductsController < ApplicationController
     end
 
     def product_params
-      productParams = params.require(:product).permit(:title, :subtitle, :price, :description, :date, :mainImage, :theme_list, :theme)
+      productParams = params.require(:product).permit(:title, :subtitle, :price, :description, :date, :mainImage, :theme_list, :theme, images: [])
       productParams[:theme_ids] = split_product_themes
       productParams[:status] = status_param
       productParams[:product_type] = product_type_param

@@ -13,6 +13,7 @@ class Product < ApplicationRecord
   validates :price, presence: true, numericality: true
 
   has_one_attached :mainImage
+  has_many_attached :images
   has_many :product_themes
   has_many :themes, through: :product_themes
 
