@@ -1,7 +1,10 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import isHotkey from 'is-hotkey'
 import { Editable, withReact, useSlate, Slate } from 'slate-react'
-// import { Html } from 'slate-html-serializer'
+import Html from "slate-html-serializer";
+import serialize from './serialize';
+import { rules } from './rules';
+import parse5 from 'parse5';
 import { Editor, Transforms, createEditor } from 'slate'
 import { withHistory } from 'slate-history'
 
@@ -21,8 +24,25 @@ const RichTextEditor = () => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
+
+  // const htmlSerializer = new Html({
+  //   rules,
+  //   // parseHtml: parse5.parseFragment,
+  // });
+
   const setUpdatedValue = value => {
-    console.log(value);
+
+    // console.log(Raw.serialize(value));
+
+    // const html =  htmlSerializer.serialize(value);
+    // console.log(value);
+  value.map(node => {
+    // console.log(node);
+    // console.log(htmlSerializer(node));
+    console.log(serialize(node));
+  })
+  
+    // 
     // Html.serizlier(slateValue)
     setValue(value);
   }
@@ -182,6 +202,8 @@ const initialValue = [
       { text: 'much', italic: true },
       { text: ' better than a ' },
       { text: '<textarea>', code: true },
+      { text: '!' },
+      { text: 'also a underline', underline: true },
       { text: '!' },
     ],
   },
