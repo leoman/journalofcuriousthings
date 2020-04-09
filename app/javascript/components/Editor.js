@@ -1,10 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import isHotkey from 'is-hotkey'
 import { Editable, withReact, useSlate, Slate } from 'slate-react'
-import Html from "slate-html-serializer";
 import serialize from './serialize';
-import { rules } from './rules';
-import parse5 from 'parse5';
 import { Editor, Transforms, createEditor } from 'slate'
 import { withHistory } from 'slate-history'
 
