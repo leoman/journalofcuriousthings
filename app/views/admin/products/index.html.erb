@@ -1,15 +1,15 @@
-<div class="bg-white rounded-t-lg overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center flex-col">
+<div class="page-block">
 
   <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
 
-  <div class="bg-white w-full p-3 mb-6 md">
+  <div class="block-content-solo-wrapper md">
     <div class="inline-flex">
       <%= link_to 'New Product', new_admin_product_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" %>
       <p id="notice"><%= notice %></p>
     </div>
   </div>
 
-  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">  
+  <div class="content-block">  
             
     <div class="w-full">
       <table class="table-auto w-full">
@@ -54,10 +54,10 @@
   </div>
 
   <% if @paginated %>
-    <div class="bg-white w-full md:w-1/2 p-3 mb-6 md:mb-0">
+    <div class="block-content-solo-wrapper">
       <div class="inline-flex">
-        <%= link_to 'Previous', { controller: "products", action: "index", page: @page - 1 }, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l" unless @page <= 0 %>
-        <%= link_to "Next", { controller: "products", action: "index", page: @page + 1 }, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r" unless @page >= @paginated -1  %>
+        <%= link_to 'Previous', { controller: "products", action: "index", page: @page - 1 }, class: "block-button" unless @page <= 0 %>
+        <%= link_to "Next", { controller: "products", action: "index", page: @page + 1 }, class: "block-button" unless @page >= @paginated -1  %>
       </div>
     </div>
   <% end %>

@@ -1,51 +1,98 @@
-<div class="page-wrapper">
+<div class="page-block">
 
   <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div class="card card-body">
+  <div class="content-block">  
 
-          <p id="notice"><%= notice %></p>
+    <p id="notice"><%= notice %></p>
 
-          <p>
-            <strong>Title:</strong>
-            <%= @product.title %>
-          </p>
-
-          <p>
-            <strong>Price:</strong>
-            <%= @product.price %>
-          </p>
-
-          <% if @product.mainImage.attached? %>
-            <div class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <p class="w-full block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Current main image uploaded</p>
-                <img class="max-w-md" src="<%= (url_for(@product.mainImage)) %>" />
-              </div>
-            </div>
-          <% end %>
-
-          <% if @product.images.attached? %>
-            <div class="flex flex-wrap -mx-3 mb-6">
-              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <p class="w-full block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Current images uploaded</p>
-                <% @product.images.each do |image| %> 
-                  <img class="max-w-md" src="<%= (url_for(image)) %>" />
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-
-          <%= @product.inspect %>
-
-          <%= link_to 'Edit', edit_admin_product_path(@product) %> |
-          <%= link_to 'Back', admin_products_path %>
-          
-        </div>
+    <div class="block-wrapper">
+      <div class="block-content-wrapper">
+        <p class="form-text">
+          <strong>Title:</strong>
+          <%= @product.title %>
+        </p>
       </div>
     </div>
+
+    <div class="block-wrapper">
+      <div class="block-content-wrapper">
+        <p class="form-text">
+          <strong>Title:</strong>
+          <%= @product.subtitle %>
+        </p>
+      </div>
+    </div>
+
+    <div class="block-wrapper">
+      <div class="block-content-wrapper">
+        <p class="form-text">
+          <strong>Price:</strong>
+          <%= @product.price %>
+        </p>
+      </div>
+    </div>
+
+    <div class="block-wrapper">
+      <div class="block-content-wrapper">
+        <p class="form-text">
+          <strong>Status:</strong>
+          <%= @product.status.capitalize %>
+        </p>
+      </div>
+    </div>
+
+    <div class="block-wrapper">
+      <div class="block-content-wrapper">
+        <p class="form-text">
+          <strong>Type:</strong>
+          <%= @product.product_type.capitalize %>
+        </p>
+      </div>
+    </div>
+
+    <div class="block-wrapper">
+      <div class="block-content-wrapper">
+        <p class="form-text">
+          <strong>Date:</strong>
+          <%= @product.date.to_s(:long)  %>
+        </p>
+      </div>
+    </div>
+
+    <% if @product.mainImage.attached? %>
+      <div class="block-wrapper">
+        <div class="block-content-wrapper">
+          <p class="form-text">Current main image uploaded</p>
+          <img class="max-w-md" src="<%= (url_for(@product.mainImage)) %>" />
+          <%= link_to 'Remove', delete_image_attachment_admin_product_url(@product.mainImage.id),
+          method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if @product.images.attached? %>
+      <div class="block-wrapper">
+        <div class="block-content-wrapper">
+          <p class="form-text">Current images uploaded</p>
+          <% @product.images.each do |image| %> 
+            <img class="max-w-md" src="<%= (url_for(image)) %>" />
+            <%= link_to 'Remove', delete_image_attachment_admin_product_url(image.id),
+          method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
   </div>
+
+  <div class="block-content-solo-wrapper">
+    <div class="inline-flex">
+      <%= link_to 'Edit', edit_admin_product_path(@product), class: "block-button" %>
+      <%= link_to 'Back', admin_products_path, class: "block-button" %>
+    </div>
+  </div>
+    
 </div>

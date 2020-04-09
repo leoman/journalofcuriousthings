@@ -1,13 +1,13 @@
-<div class="bg-white rounded-t-lg overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center flex-col">
+<div class="page-block">
 
   <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
 
   <%= render 'form', product: @product, link: admin_product_path(@product) %>
 
-  <div class="bg-white w-full md:w-1/2 p-3 mb-6 md:mb-0">
+  <div class="block-content-solo-wrapper">
     <div class="inline-flex">
-      <%= link_to 'Show', admin_product_path(@product.id), class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l" %>
-      <%= link_to 'Back', admin_products_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r" %>
+      <%= link_to 'Show', admin_product_path(@product.id), class: "block-button" %>
+      <%= link_to 'Back', admin_products_path, class: "block-button" %>
     </div>
   </div>
 

@@ -2,10 +2,10 @@
 <%= javascript_tag "myOptions = #{Tag.order(:name).collect {|p| [ p.name, p.id.to_s ] }};" %>
 <%= javascript_tag "currentValues = #{@post.tags.collect {|p| p.id.to_s }};" %>
 
-<%= form_with(model: post, url: link, local: true, class: 'bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4') do |form| %>
+<%= form_with(model: post, url: link, local: true, class: 'content-block') do |form| %>
     
   <% if post.errors.any? %>
-    <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="block-wrapper">
       <div id="error_explanation">
         <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
@@ -18,95 +18,95 @@
     </div>
   <% end %>
 
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3 mb-6 md:mb-0">
-      <%= form.label :content, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
+  <div class="block-wrapper">
+    <div class="block-content-wrapper">
+      <%= form.label :content, class: "form-label" %>
       <div class=" p-6">
         <%= react_component("Editor", { greeting: "Hello from react-rails." }) %>
       </div>
     </div>
   </div>
 
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3 mb-6 md:mb-0">
-      <%= form.label :title, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
-      <%= form.text_field :title, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white' %>
+  <div class="block-wrapper">
+    <div class="block-content-wrapper">
+      <%= form.label :title, class: "form-label" %>
+      <%= form.text_field :title, class: 'form-field' %>
     </div>
   </div>
 
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3 mb-6 md:mb-0">
-      <%= form.label :subtitle, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
-      <%= form.text_field :subtitle, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white' %>
+  <div class="block-wrapper">
+    <div class="block-content-wrapper">
+      <%= form.label :subtitle, class: "form-label" %>
+      <%= form.text_field :subtitle, class: 'form-field' %>
     </div>
   </div>
 
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3 mb-6 md:mb-0">
-      <%= form.label :excerpt, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
-      <%= form.text_area :excerpt, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white', rows: 3 %>
+  <div class="block-wrapper">
+    <div class="block-content-wrapper">
+      <%= form.label :excerpt, class: "form-label" %>
+      <%= form.text_area :excerpt, class: 'form-field', rows: 3 %>
     </div>
   </div>
 
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3 mb-6 md:mb-0">
-      <%= form.label :content, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
-      <%= form.text_area :content, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white', rows: 5 %>
+  <div class="block-wrapper">
+    <div class="block-content-wrapper">
+      <%= form.label :content, class: "form-label" %>
+      <%= form.text_area :content, class: 'form-field', rows: 5 %>
     </div>
   </div>
   
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3 mb-6 md:mb-0">
-      <%= form.label :date, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
-      <%= form.datetime_select :date, {}, class: "appearance-none bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" %>
+  <div class="block-wrapper">
+    <div class="block-content-wrapper">
+      <%= form.label :date, class: "form-label" %>
+      <%= form.datetime_select :date, {}, class: "form-field__datetime" %>
     </div>
   </div>
 
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full  px-3 mb-6 md:mb-0">
-      <%= form.label :status, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
-      <%= form.select(:status, options_for_select(Post.statuses, Post.status_to_i(post[:status])), {}, { :class => "block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" }) %>
+  <div class="block-wrapper">
+    <div class="block-content-wrapper">
+      <%= form.label :status, class: "form-label" %>
+      <%= form.select(:status, options_for_select(Post.statuses, Post.status_to_i(post[:status])), {}, { :class => "form-field__select" }) %>
     </div>
   </div>
 
   <% if @post.mainImage.attached? %>
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full px-3 mb-6 md:mb-0">
-        <p class="w-full block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Current main image uploaded</p>
+    <div class="block-wrapper">
+      <div class="block-content-wrapper">
+        <p class="w-full form-label">Current main image uploaded</p>
         <img class="max-w-md" src="<%= (url_for(@post.mainImage)) %>" />
       </div>
     </div>
   <% end %>
 
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3 mb-6 md:mb-0">   
+  <div class="block-wrapper">
+    <div class="block-content-wrapper">   
       <%= form.file_field :mainImage %>
     </div>
   </div>
 
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <%= form.check_box :sticky, { :class => "ml-3 mr-3 mb-6 md:mb-0" } %> <br />
+  <div class="block-wrapper">
+    <%= form.check_box :sticky, { :class => "form-field__checkbox" } %> <br />
     <p class="text-grey">Make this post sticky</p>
   </div>
 
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full  px-3 mb-6 md:mb-0">
-      <%= form.label :status, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
-      <%= form.select(:status, options_for_select(Post.statuses, Post.status_to_i(post[:status])), {}, { :class => "block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" }) %>
+  <div class="block-wrapper">
+    <div class="block-content-wrapper">
+      <%= form.label :status, class: "form-label" %>
+      <%= form.select(:status, options_for_select(Post.statuses, Post.status_to_i(post[:status])), {}, { :class => "form-field__select" }) %>
     </div>
   </div>
 
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3 mb-6 md:mb-0">
+  <div class="block-wrapper">
+    <div class="block-content-wrapper">
       <input id="tags" type="hidden" value="" name="post[tag_ids]" />
-      <%= form.label :tags, class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
+      <%= form.label :tags, class: "form-label" %>
       <span class="multi-select"></span>
     </div>
   </div>
 
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <%= form.submit 'Submit', class: "flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" %>
+  <div class="block-wrapper">
+    <div class="block-content-wrapper">
+      <%= form.submit 'Submit', class: "form-button" %>
     </div>
   </div>
 

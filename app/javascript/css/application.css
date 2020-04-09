@@ -4,16 +4,24 @@
 
 @import "tailwindcss/utilities";
 
-.form {
+.page-block {
+  @apply bg-white rounded-t-lg overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center flex-col
+}
+
+.content-block {
   @apply bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4;
 }
 
-.form-wrapper {
+.block-wrapper {
   @apply flex flex-wrap -mx-3 mb-6;
 }
 
-.form-fields-wrapper {
-  @apply w-full px-3 mb-6;
+.block-content-wrapper {
+  @apply bg-white w-full px-3 mb-6;
+}
+
+.block-content-solo-wrapper {
+  @apply bg-white w-full p-3 mb-6;
 }
 
 .form-label {
@@ -56,9 +64,41 @@
   @apply bg-teal-700 border-teal-700;
 }
 
+.form-text {
+  @apply w-full block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2
+}
+
+.block-text {
+  @apply w-full block tracking-wide text-gray-700 text-xs font-bold mb-2
+}
+
+.block-button {
+  @apply bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded mr-2
+}
+.block-button:hover {
+  @apply bg-gray-400
+}
+
 @media (min-width: 768px) {
-  .form-fields-wrapper,
+  .block-content-wrapper,
   .form-field__checkbox {
     margin-bottom: 0;
   }
+}
+
+
+
+
+pre {
+  padding: 10px;
+  font-size: 14px;
+  display: block;
+  white-space: pre-wrap;
+  width: 100%;
+	margin: 0;
+	overflow: auto;
+	overflow-y: hidden;
+	line-height: 20px;
+	background: #efefef;
+	border: 1px solid #777;
 }
