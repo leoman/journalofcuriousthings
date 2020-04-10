@@ -12,11 +12,9 @@
     <h1>journal of curious things</h1>
   </div>
     
-  <div class="w-full container mx-auto flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20">
+  <div class="w-full container mx-auto flex-grow flex items-center lg:w-auto md:w-auto md:block hidden lg:block mt-2 lg:mt-0 bg-white z-20">
 
-    <!-- <i class="fas fa-home fa-fw mr-3 text-orange-600"></i><span class="pb-1 md:pb-0 text-sm">Home</span> -->
-
-    <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
+    <ul class="list-reset flex flex-1 items-center px-4 md:px-0">
       <% links.each do |key, value| %>
         <li class="mr-6 my-2 md:my-0">
           <%= link_to key.capitalize, value, class: "border-solid block py-1 md:py-3 pl-1 align-middle text-orange-600 no-underline hover:text-gray-900 border-b-2 border-white hover:border-orange-600" %>

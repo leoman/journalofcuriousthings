@@ -75,7 +75,8 @@
   </div>
 
   <div class="block-wrapper">
-    <div class="block-content-wrapper">   
+    <div class="block-content-wrapper">
+      <%= form.label :main_image, class: "form-label" %>
       <%= form.file_field :mainImage %>
     </div>
   </div>
@@ -93,7 +94,8 @@
   <% end %>
 
   <div class="block-wrapper">
-    <div class="block-content-wrapper">   
+    <div class="block-content-wrapper">
+      <%= form.label :images, class: "form-label" %>
       <%= form.file_field :images, multiple: true %>
     </div>
   </div>
