@@ -4,7 +4,7 @@ class Admin::ProductsController < ApplicationController
   layout "admin"
 
   before_action :set_product, only: [:show, :edit, :update, :destroy, :preview]
-  before_action :set_title, only: [:index, :show, :new, :edit]
+  before_action :set_title, only: [:index, :show, :new, :create, :edit]
   before_action :set_page, :set_total, :set_total_pages, only: [:index]
 
   def index

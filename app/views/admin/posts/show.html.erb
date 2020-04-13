@@ -1,88 +1,76 @@
-<div class="bg-white rounded-t-lg overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center flex-col">
+<div class="content-wrapper">
 
   <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
 
-  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">  
+  <div class="content-section-wrapper">
 
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          <strong>Title:</strong>
-          <%= @post.title %>
-        </p>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          <strong>Subtitle:</strong>
-          <%= @post.subtitle %>
-        </p>
-      </div>
-    </div>
-
-    <% if @post.mainImage.attached? %>
-      <div class="flex flex-wrap -mx-3 mb-6">
-        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <p class="w-full block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Current main image uploaded</p>
-          <img class="max-w-md" src="<%= (url_for(@post.mainImage)) %>" />
-        </div>
+    <% if flash[:notice] %>
+      <div class="notice" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"/></svg>
+        <p><%= notice %></p>
       </div>
     <% end %>
 
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          <strong>Excerpt:</strong>
-          <%= @post.excerpt %>
-        </p>
-      </div>
-    </div>
-    
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          <strong>Date:</strong>
-          <%= @post.date %>
-        </p>
-      </div>
-    </div>
-    
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          <strong>Status:</strong>
-          <%= @post.status %>
-        </p>
-      </div>
-    </div>
-    
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          <strong>Sticky:</strong>
-          <%= @post.sticky %>
-        </p>
-      </div>
+    <div class="block-content">
+      <p>
+        <strong>Title:</strong>
+        <%= @post.title %>
+      </p>
     </div>
 
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          <strong>Tags:</strong>
-          <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
-        </p>
-      </div>
+    <div class="block-content">
+      <p>
+        <strong>Subtitle:</strong>
+        <%= @post.subtitle %>
+      </p>
     </div>
 
+    <% if @post.mainImage.attached? %>
+      <div class="block-content">
+        <p><strong>Current main image uploaded</strong></p>
+        <img class="max-w-md" src="<%= (url_for(@post.mainImage)) %>" />
+      </div>
+    <% end %>
+
+    <div class="block-content">
+      <p>
+        <strong>Excerpt:</strong>
+        <%= @post.excerpt %>
+      </p>
+    </div>
+    
+    <div class="block-content">
+      <p>
+        <strong>Date:</strong>
+        <%= @post.date %>
+      </p>
+    </div>
+    
+    <div class="block-content">
+      <p>
+        <strong>Status:</strong>
+        <%= @post.status %>
+      </p>
+    </div>
+    
+    <div class="block-content">
+      <p>
+        <strong>Sticky:</strong>
+        <%= @post.sticky %>
+      </p>
+    </div>
+
+    <div class="block-content">
+      <p>
+        <strong>Tags:</strong>
+        <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+      </p>
+    </div>
   </div>
 
-  <div class="bg-white w-full md:w-1/2 p-3 mb-6 md:mb-0">
-    <div class="inline-flex">
-      <%= link_to 'Edit', edit_admin_post_path(@post), class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l" %>
-      <%= link_to 'Back', admin_posts_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r" %>
-    </div>
+  <div class="content-section-wrapper">
+    <%= link_to 'Edit', edit_admin_post_path(@post), class: "btn" %>
+    <%= link_to 'Back', admin_posts_path, class: "btn" %>
   </div>
 
 </div>

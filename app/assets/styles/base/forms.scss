@@ -1,0 +1,101 @@
+form.admin {
+
+  padding-top: 2.5rem;
+
+  .input-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 .75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    color: $slate-gray;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  input[type=text],
+  input[type=number],
+  textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    background-color: $catskill-light;
+    color: $river-bed;
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+    border: 1px solid $catskill-white;
+    font-size: 16px;
+  }
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: $catskill-light;
+    border-color: $catskill-white;
+    color: $river-bed;
+    border-width: 1px;
+    border-radius: 0.25rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+    text-transform: none;
+    font-size: 16px;
+  }
+
+  input[type=checkbox] {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+  }
+
+  .multi-select {
+    width: 100%;
+  }
+
+  .field_with_errors {
+    display: block;
+    width: 100%;
+
+    input,
+    textarea {
+      border-color: $persian-red;
+    }
+  }
+
+  .error_explanation {
+
+    h2 {
+      color: $persian-red;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    li {
+      margin-bottom: .2rem;
+    }
+
+  }
+
+  .main-image {
+    max-width: 50%;
+  }
+
+  .mini-image {
+    max-width:150px
+  }
+
+}

@@ -1,0 +1,17 @@
+.content-breadcrumbs {
+  display: flex;
+  justify-content: flex-end;
+
+  li {
+    margin-right: 1.5rem;
+
+    a {
+      color: $picton-blue;
+
+      &.not-allowed {
+        color: $geyser;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

@@ -1,11 +1,11 @@
 <%= javascript_tag "myOptions = #{Theme.order(:name).collect {|p| [ p.name, p.id.to_s ] }};" %>
 <%= javascript_tag "currentValues = #{@product.themes.collect {|p| p.id.to_s }};" %>
 
-<%= form_with(model: product, url: link, local: true, class: 'content-block ') do |form| %>
+<%= form_with(model: product, url: link, local: true, class: 'content-section-wrapper admin') do |form| %>
 
   <% if product.errors.any? %>
-    <div class="block-wrapper">
-      <div id="error_explanation">
+    <div class="input-wrapper">
+      <div class="error_explanation">
         <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
         <ul>
@@ -17,107 +17,87 @@
     </div>
   <% end %>
 
-  <div class="block-wrapper">
-    <div class="block-content-wrapper">
-      <%= form.label :title, class: "form-label" %>
-      <%= form.text_field :title, class: 'form-field' %>
+  <div class="input-wrapper">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= form.label :subtitle %>
+    <%= form.text_field :subtitle %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= form.label :price %>
+    <%= form.number_field :price, step: '0.01', placeholder: '0.00' %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= form.label :status %>
+    <div>
+      <%= form.select(:status, options_for_select(Product.statuses, Product.status_to_i(product[:status])), {}) %>
     </div>
   </div>
 
-  <div class="block-wrapper">
-    <div class="block-content-wrapper">
-      <%= form.label :subtitle, class: "form-label" %>
-      <%= form.text_field :subtitle, class: 'form-field' %>
+  <div class="input-wrapper">
+    <%= form.label :type %>
+    <div>
+      <%= form.select(:product_type, options_for_select(Product.product_types, Product.product_type_to_i(product[:product_type])), {}) %>
     </div>
   </div>
 
-  <div class="block-wrapper">
-    <div class="block-content-wrapper">
-      <%= form.label :price, class: "form-label" %>
-      <%= form.number_field :price, class: 'form-field', step: '0.01', placeholder: '0.00' %>
+  <div class="input-wrapper">
+    <%= form.label :date %>
+    <div>
+      <%= form.datetime_select :date, {} %>
     </div>
   </div>
 
-  <div class="block-wrapper">
-    <div class="block-content-wrapper">
-      <%= form.label :status, class: "form-label" %>
-      <%= form.select(:status, options_for_select(Product.statuses, Product.status_to_i(product[:status])), {}, { :class => "form-field__select" }) %>
-    </div>
+  <div class="input-wrapper">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-field', rows: 5 %>
   </div>
 
-  <div class="block-wrapper">
-    <div class="block-content-wrapper">
-      <%= form.label :type, class: "form-label" %>
-      <%= form.select(:product_type, options_for_select(Product.product_types, Product.product_type_to_i(product[:product_type])), {}, { :class => "form-field__select" }) %>
-    </div>
+  <div class="input-wrapper">
+    <input id="themes" type="hidden" value="" name="product[theme_ids]" />
+    <%= form.label :themes %>
+    <span class="multi-select"></span>
   </div>
 
-  <div class="block-wrapper">
-    <div class="block-content-wrapper">
-      <%= form.label :date, class: "form-label" %>
-      <%= form.datetime_select :date, {}, class: "form-field__datetime" %>
-    </div>
-  </div>
-
-  <div class="block-wrapper">
-    <div class="block-content-wrapper">
-      <%= form.label :description, class: "form-label" %>
-      <%= form.text_area :description, class: 'form-field', rows: 5 %>
-    </div>
-  </div>
-
-  <div class="block-wrapper">
-    <div class="block-content-wrapper">
-      <input id="themes" type="hidden" value="" name="product[theme_ids]" />
-      <%= form.label :themes, class: "form-label" %>
-      <span class="multi-select"></span>
-    </div>
-  </div>
-
-  <div class="block-wrapper">
-    <div class="block-content-wrapper">
-      <%= form.label :main_image, class: "form-label" %>
-      <%= form.file_field :mainImage %>
-    </div>
+  <div class="input-wrapper">
+    <%= form.label :main_image %>
+    <%= form.file_field :mainImage %>
   </div>
 
   <% if @product.mainImage.attached? %>
-    <div class="block-wrapper">
-      <div class="block-content-wrapper">
-        <p class="form-text">Current main image uploaded</p>
-        <img class="max-w-md" src="<%= (url_for(@product.mainImage)) %>" />
-        <%= link_to 'Remove', delete_image_attachment_admin_product_url(@product.mainImage.id),
-                method: :delete,
-                  data: { confirm: 'Are you sure?' } %>
-      </div>
+    <div class="input-wrapper">
+      <label>Current main image uploaded</label>
+      <img class="main-image" src="<%= (url_for(@product.mainImage)) %>" />
+      <%= link_to 'Remove', delete_image_attachment_admin_product_url(@product.mainImage.id),
+              method: :delete,
+                data: { confirm: 'Are you sure?' } %>
     </div>
   <% end %>
 
-  <div class="block-wrapper">
-    <div class="block-content-wrapper">
-      <%= form.label :images, class: "form-label" %>
-      <%= form.file_field :images, multiple: true %>
-    </div>
+  <div class="input-wrapper">
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true %>
   </div>
 
   <% if @product.images.attached? %>
-    <div class="block-wrapper">
-      <div class="block-content-wrapper">
-        <p class="form-text">Current images uploaded</p>
-        <% @product.images.each do |image| %> 
-          <img class="max-w-md" style="max-width:150px" src="<%= (url_for(image)) %>" />
-          <%= link_to 'Remove', delete_image_attachment_admin_product_url(image.id),
-                method: :delete,
-                  data: { confirm: 'Are you sure?' } %>
-        <% end %>
-      </div>
+    <div class="input-wrapper">
+      <label>Current images uploaded</label>
+      <% @product.images.each do |image| %> 
+        <img class="mini-image" src="<%= (url_for(image)) %>" />
+        <%= link_to 'Remove', delete_image_attachment_admin_product_url(image.id),
+              method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+      <% end %>
     </div>
   <% end %>
 
-  <div class="block-wrapper">
-    <div class="block-content-wrapper">
-      <%= form.submit 'Submit', class: "form-button" %>
-    </div>
+  <div class="input-wrapper">
+    <%= form.submit 'Submit', class: "btn --submit" %>
   </div>
 
 <% end %>

@@ -10,8 +10,10 @@
       <%= render partial: "layouts/shared/flash_messages" %>
       <%= render "layouts/application/navigation" %>
 
-      <div class="w-full max-w-screen-xl mx-auto">
-        <%= yield %>
+      <div class="application-content">
+        <div class="mx-4">
+          <%= yield %>
+        </div>
       </div>
 
       <%= render "layouts/application/footer" %>

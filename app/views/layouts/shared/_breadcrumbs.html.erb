@@ -1,16 +1,7 @@
-<div class="flex flex-no-wrap">
-  <div class="bg-white w-full md:w-1/2 p-3 mb-6 md">
-      <h4 class="text-lg font-bold"><%= @title %></h4>
-  </div>
-
-  <div class="bg-white w-full md:w-1/2 p-3 mb-6 md">
-    <ul class="flex justify-end">
-      <li class="mr-6">
-          <a class="text-blue-500 hover:text-blue-800" href="#">Home</a>
-      </li>
-      <li class="mr-6">
-          <a class="text-gray-400 cursor-not-allowed" href="#"><%= linkText %></a>
-      </li>
-    </ul>
-  </div>
+<div class="content-section-wrapper --inline-flex --space-between">
+  <h4 class="content-title"><%= @title %></h4>
+  <ul class="content-breadcrumbs">
+    <li><a href="#">Home</a></li>
+    <li><a class="not-allowed" href="#"><%= linkText %></a></li>
+  </ul>
 </div>

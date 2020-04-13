@@ -1,14 +1,12 @@
-<div class="page-block">
+<div class="content-wrapper">
 
   <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
 
   <%= render 'form', product: @product, link: admin_product_path(@product) %>
 
-  <div class="block-content-solo-wrapper">
-    <div class="inline-flex">
-      <%= link_to 'Show', admin_product_path(@product.id), class: "block-button" %>
-      <%= link_to 'Back', admin_products_path, class: "block-button" %>
-    </div>
+  <div class="content-section-wrapper">
+    <%= link_to 'Show', admin_product_path(@product.id), class: "btn" %>
+    <%= link_to 'Back', admin_products_path, class: "btn" %>
   </div>
 
 </div>

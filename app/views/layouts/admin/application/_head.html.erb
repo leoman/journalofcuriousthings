@@ -2,13 +2,7 @@
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
 
-<%= stylesheet_link_tag 'reset', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-<%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-<%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload' %>
+<%= javascript_pack_tag 'admin', data: { turbolinks_track: :reload } %>
 
 <link href="https://fonts.googleapis.com/css?family=Heebo|Barlow+Condensed:400,300|Sacramento&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

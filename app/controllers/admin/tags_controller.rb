@@ -4,7 +4,7 @@ class Admin::TagsController < ApplicationController
   layout "admin"
 
   before_action :set_tag, only: [:edit, :update, :destroy]
-  before_action :set_title, only: [:index, :new, :edit]
+  before_action :set_title, only: [:index, :new, :create, :edit]
 
   def index
     @tags = Tag.all

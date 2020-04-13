@@ -5,21 +5,19 @@
   </head>
 
   <body>
-    <div class="w-full">
+    <div class="page">
 
-    <div>
-      <%= render "layouts/admin/header" %>
+      <div>
+        <%= render "layouts/admin/header" %>
 
-      <%= render partial: "layouts/shared/flash_messages" %>
+        <%= render partial: "layouts/shared/flash_messages" %>
 
-      <div class="w-full bg-gray-200 main-wrapper">
-        <div class="w-full container mx-auto">
-          <div class="max-w-screen-xl ">
+        <div class="page-wrapper">
+          <div class="content">
             <%= yield %>
           </div>
         </div>
       </div>
-    </div>
 
     </div>
   </body>

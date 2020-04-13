@@ -4,7 +4,7 @@ class Admin::ThemesController < ApplicationController
   layout "admin"
 
   before_action :set_theme, only: [:edit, :update, :destroy]
-  before_action :set_title, only: [:index, :new, :edit]
+  before_action :set_title, only: [:index, :new, :create, :edit]
 
   def index
     @themes = Theme.all

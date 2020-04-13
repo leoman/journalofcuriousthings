@@ -1,0 +1,31 @@
+.table {
+  width: 100%;
+  table-layout: auto;
+  box-sizing: border-box;
+  border: 0 solid $catskill-white;
+  border-collapse: collapse;
+
+  thead {
+
+    th {
+      color: $slate-gray;
+      padding: .75rem;
+      font-weight: 700;
+      background-color: $catskill-light;
+      border: 1px solid $catskill-white;
+    }
+  }
+
+  tbody {
+    td {
+      box-sizing: border-box;
+      border: 1px solid $catskill-white;
+      color: $oxford-blue;
+      padding: .75rem;
+
+      &.text-center {
+        text-align: center;
+      }
+    }
+  }
+}

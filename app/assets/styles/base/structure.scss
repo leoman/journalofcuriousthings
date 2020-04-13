@@ -1,0 +1,43 @@
+.page {
+  width: 100%;
+}
+
+.page-wrapper {
+  padding-top: 14rem;
+  background-color: $catskill-light;
+}
+
+.content {
+  @include container;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.content-section-wrapper {
+  background-color: $white;
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 0.25rem;
+
+  &.--half {
+    width: 50%;
+  }
+
+  &.--inline-flex {
+    display: inline-flex;
+  }
+
+  &.--space-between {
+    justify-content: space-between;
+  }
+}
