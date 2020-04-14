@@ -1,0 +1,66 @@
+header {
+
+  .title {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .text-wrapper {
+    position: relative;
+    max-width: 75%;
+    margin: 0 auto;
+    display: inline-flex;
+  }
+
+  h1 {
+    font-size: 6rem;
+    line-height: 5rem;
+    margin: 40px 0 60px;
+    text-align: center;
+    font-family: 'Sacramento', cursive;
+  }
+
+  h2 {
+    font-size: 1rem;
+    line-height: 1rem;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 300;
+    position: absolute;
+    right: 80px;
+    bottom: 20px;
+  }
+
+  .image-gallery {
+
+    display: flex;
+
+    .image-wrapper {
+      width: calc(100% / 6);
+      display: block;
+      position: relative;
+      margin: auto;
+      overflow: hidden;
+
+      img {
+        max-width: 100%;
+        transition: all 1.0s;
+        display: block;
+        width: 100%;
+        height: auto;
+        transform: scale(1);
+        max-height: 100px;
+        object-fit: cover;
+
+        &:hover {
+          transform: scale(1.4);
+        }
+      }
+
+    }
+  }
+
+}

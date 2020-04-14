@@ -5,13 +5,13 @@
   </head>
 
   <body>
-    <div>
+    <div class="page">
       <%= render "layouts/application/header" %>
       <%= render partial: "layouts/shared/flash_messages" %>
       <%= render "layouts/application/navigation" %>
 
-      <div class="application-content">
-        <div class="mx-4">
+      <div class="content">
+        <div class="margin-sides">
           <%= yield %>
         </div>
       </div>

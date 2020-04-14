@@ -10,13 +10,9 @@
 %>
 
 <div class="navigation shadow w-full z-20">
-  <div class="container mx-auto">
-    <ul class="menu lg:flex flex-1 items-center justify-center">
-      <% navLinks.each do |link| %>
-        <li class="link <%= 'current' unless current != link[:url] %>"><%= link_to link[:name], link[:url] %></li>
-      <% end %>
-    </ul>
-  </div>
-
-  
+  <ul>
+    <% navLinks.each do |link| %>
+      <li class="<%= 'current' unless current != link[:url] %>"><%= link_to link[:name], link[:url] %></li>
+    <% end %>
+  </ul>
 </div>
