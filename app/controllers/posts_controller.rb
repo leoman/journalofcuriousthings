@@ -10,6 +10,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by slug: params[:slug]
+    if !@post
+      render "errors/not_found", status: :not_found
+    end
   end
 
   def tags

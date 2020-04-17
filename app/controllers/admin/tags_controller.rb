@@ -1,10 +1,7 @@
-class Admin::TagsController < ApplicationController
-
-  TITLE = "Tags"
-  layout "admin"
+class Admin::TagsController < Admin::BaseController
+  @@title = "Tags"
 
   before_action :set_tag, only: [:edit, :update, :destroy]
-  before_action :set_title, only: [:index, :new, :create, :edit]
 
   def index
     @tags = Tag.all
@@ -12,9 +9,6 @@ class Admin::TagsController < ApplicationController
 
   def new
     @tag = Tag.new
-  end
-
-  def edit
   end
 
   def create
@@ -52,18 +46,16 @@ class Admin::TagsController < ApplicationController
   end
 
   private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_tag
-          @tag = Tag.find(params[:id])
-      end
+    
+    def set_tag
+      @tag = Tag.find(params[:id])
+    end
 
-      def set_title
-        # @title = self::TITLE
-        @title = 'Tags'
-      end
+    def set_title
+      @title = @@title
+    end
 
-      # Never trust parameters from the scary internet, only allow the white list through.
-      def tag_params
-          tagParams = params.require(:tag).permit(:name)
-      end
+    def tag_params
+      tagParams = params.require(:tag).permit(:name)
+    end
 end

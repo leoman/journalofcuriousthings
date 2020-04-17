@@ -9,17 +9,16 @@
 <header>
   <h1>journal of curious things</h1>
   
-    
   <navigation>
-
-    <ul>
-      <% links.each do |key, value| %>
-        <li>
-          <%= link_to key.capitalize, value %>
-        </li>
-      <% end %>
-    </ul>
-
+    <% if signed_in? %>
+      <ul>
+        <% links.each do |key, value| %>
+          <li>
+            <%= link_to key.capitalize, value %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   </navigation>
 
 </header>

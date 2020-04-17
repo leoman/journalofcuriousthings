@@ -1,24 +1,14 @@
-class Admin::ThemesController < ApplicationController
-
-  TITLE = "Themes"
-  layout "admin"
+class Admin::ThemesController < Admin::BaseController
+  @@title = "Themes"
 
   before_action :set_theme, only: [:edit, :update, :destroy]
-  before_action :set_title, only: [:index, :new, :create, :edit]
 
   def index
     @themes = Theme.all
   end
 
-  
-  def show
-  end
-
   def new
     @theme = Theme.new
-  end
-
-  def edit
   end
 
   def create
@@ -61,7 +51,7 @@ class Admin::ThemesController < ApplicationController
     end
 
     def set_title
-      @title = Admin::ThemesController::TITLE
+      @title = @@title
     end
 
     def theme_params

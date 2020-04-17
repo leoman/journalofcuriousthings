@@ -1,24 +1,15 @@
-class Admin::ProductsController < ApplicationController
-  TITLE = "Products"
-  POSTS_PER_PAGE = 10
-  layout "admin"
+class Admin::ProductsController < Admin::BaseController
+  @@title = "Products"
 
   before_action :set_product, only: [:show, :edit, :update, :destroy, :preview]
-  before_action :set_title, only: [:index, :show, :new, :create, :edit]
   before_action :set_page, :set_total, :set_total_pages, only: [:index]
 
   def index
-    @products = Product.order(date: :desc).limit(POSTS_PER_PAGE).offset(@page * POSTS_PER_PAGE)
-  end
-
-  def show
+    @products = Product.order(date: :desc).limit(@@posts_per_page).offset(@page * @@posts_per_page)
   end
 
   def new
     @product = Product.new
-  end
-
-  def edit
   end
 
   def create
@@ -62,13 +53,13 @@ class Admin::ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_product
       @product = Product.find(params[:id])
     end
 
     def set_title
-      @title = Admin::ProductsController::TITLE
+      @title = @@title
     end
 
     def split_product_themes
@@ -100,10 +91,10 @@ class Admin::ProductsController < ApplicationController
     end
 
     def set_total_pages
-      if @total <= POSTS_PER_PAGE
+      if @total <= @@posts_per_page
         @paginated = false
       else
-        @paginated = (@total.to_f / POSTS_PER_PAGE.to_f).ceil 
+        @paginated = (@total.to_f / @@posts_per_page.to_f).ceil 
       end
     end
 end
