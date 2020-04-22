@@ -18,13 +18,9 @@
     </div>
   <% end %>
 
-  <div class="block-wrapper">
-    <div class="block-content-wrapper">
-      <%= form.label :content, class: "form-label" %>
-      <div class=" p-6">
-        <%= react_component("Editor", { greeting: "Hello from react-rails." }) %>
-      </div>
-    </div>
+  <div class="input-wrapper">
+    <%= form.label :content, class: "form-label" %>
+    <%= react_component("SlateEditor", { greeting: "Hello from react-rails." }, { class: "slate-editor-wrapper" }) %>
   </div>
 
   <div class="input-wrapper">

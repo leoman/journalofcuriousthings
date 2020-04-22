@@ -1,7 +1,7 @@
 import { Node, Text } from 'slate'
 import escapeHtml from 'escape-html'
 
-const serialize = node => {
+export const serialize = node => {
 
   if(node.bold) {
     return `<strong>${node.text}</strong>`;
@@ -33,16 +33,18 @@ const serialize = node => {
       return `<p>${children}</p>`
     case 'link':
       return `<a href="${escapeHtml(node.url)}">${children}</a>`
-    case 'header-1':
-      return <h1>{children}</h1>;
-    case 'header-2':
-      return <h2>{children}</h2>;
-    case 'header-3':
-      return <h3>{children}</h3>;
-    case 'header-4':
-      return <h4>{children}</h4>;
-    case 'header-5':
-      return <h5>{children}</h5>;
+    case 'heading-one':
+      return `<h1>${children}</h1>`;
+    case 'heading-two':
+      return `<h2>${children}</h2>`;
+    case 'heading-three':
+      return `<h3>${children}</h3>`;
+    case 'heading-four':
+      return `<h4>${children}</h4>`;
+    case 'heading-five':
+      return `<h5>${children}</h5>`;
+    case 'heading-six':
+      return `<h6>${children}</h6>`;
     case 'code':
       return <pre><code>{children}</code></pre>;
     case 'bold':
@@ -56,4 +58,10 @@ const serialize = node => {
   }
 }
 
-export default serialize;
+export const serializeValueToHtml = value => {
+  value.map(node => {
+    console.log(serialize(node));
+  })
+}
+
+export default serializeValueToHtml;
