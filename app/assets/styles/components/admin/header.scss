@@ -4,14 +4,25 @@ header {
   top: 0;
   position: fixed;
   background-color: $white;
-  min-height: 14rem;
   width: 100%;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  padding: 60px 60px 0;
 
   h1 {
     font-size: 4rem;
     line-height: 4rem;
-    margin: 60px;
+    margin: 0;
     text-align: center;
     font-family: 'Sacramento', cursive;
+    padding-bottom: 60px;
+  }
+
+  &.shrink {
+    padding: 0 60px;
+    h1 {
+      padding-bottom: 0;
+    }
   }
 }
