@@ -16,20 +16,9 @@ function resizeAllGridItems(){
   }
 }
 
-function resizeInstance(instance){
-	item = instance.elements[0];
-  resizeGridItem(item);
-}
-
-// window.onload = resizeAllGridItems();
 window.addEventListener("resize", resizeAllGridItems);
-document.addEventListener('DOMContentLoaded', (event) => resizeAllGridItems());
-// setTimeout(() => {
-//   resizeAllGridItems();
-// }, 1000);
 
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("turbolinks:load", function() {
 
   let counter = 0;
   if(document.getElementById('gridView')) {
@@ -37,12 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function incrementCounter() {
       counter++;
       if ( counter === length ) {
-        console.log('handle the resizeAllGridItems');
         resizeAllGridItems();
       }
     }
 
-    console.log('handle the grid!');
     const grid = document.getElementById('gridView');
     const images = grid.getElementsByTagName('img');
     const length = images.length;
