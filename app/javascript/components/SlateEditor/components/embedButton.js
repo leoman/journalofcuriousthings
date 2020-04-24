@@ -4,7 +4,7 @@ import { insertEmbed } from '../helpers'
 import Button from './button'
 import Icon from './icon'
 
-export const EmbedButton = ({ ...props }) => {
+export const EmbedButton = ({ icon, ...props }) => {
   const editor = useEditor()
   return (
     <Button
@@ -16,7 +16,7 @@ export const EmbedButton = ({ ...props }) => {
       }}
       {...props}
     >
-      <Icon>movie</Icon>
+      <Icon>{icon}</Icon>
     </Button>
   )
 }

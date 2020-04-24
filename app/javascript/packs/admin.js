@@ -24,5 +24,5 @@ const resizeHeader = () => {
     header.classList.remove("shrink");
   }
 }
-
+ 
 window.addEventListener("scroll", resizeHeader);

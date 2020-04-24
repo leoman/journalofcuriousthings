@@ -15,7 +15,10 @@ const SlateEditor = () => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withImages(withLinks(withEmbeds(withHistory(withReact(createEditor()))))), [])
-  const setUpdatedValue = value => setValue(value)
+  const setUpdatedValue = value => {
+    // console.log(value);
+    setValue(value)
+  }
 
   return (
     <Slate editor={editor} value={value} onChange={value => setUpdatedValue(value)}>
@@ -25,7 +28,7 @@ const SlateEditor = () => {
         renderLeaf={renderLeaf}
         placeholder=""
         spellCheck
-        autoFocus
+        autoFocus={true}
         className="slate-editor"
         onKeyDown={onKeyDown}
       />

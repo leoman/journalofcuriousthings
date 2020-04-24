@@ -4,7 +4,7 @@ export const withImages = editor => {
   const { insertData, isVoid } = editor
 
   editor.isVoid = element => {
-    return element.type === 'image' ? true : isVoid(element)
+    return element.type === 'image' || element.type === 'double-image' ? true : isVoid(element)
   }
 
   editor.insertData = data => {

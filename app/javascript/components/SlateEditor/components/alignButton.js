@@ -2,18 +2,16 @@ import React from 'react'
 import { useSlate } from 'slate-react'
 import Button from './button'
 import Icon from './icon'
-import { isLinkActive, insertLink } from '../helpers'
+import { isAlignActive, toggleAlign } from '../helpers'
 
-const LinkButton = ({ icon, ...props }) => {
+export const AlignButton = ({ format, icon, ...props }) => {
   const editor = useSlate()
   return (
     <Button
-      active={isLinkActive(editor)}
+      active={isAlignActive(editor, format)}
       onMouseDown={event => {
         event.preventDefault()
-        const url = window.prompt('Enter the URL of the link:')
-        if (!url) return
-        insertLink(editor, url)
+        toggleAlign(editor, format)
       }}
       {...props}
     >
@@ -22,4 +20,4 @@ const LinkButton = ({ icon, ...props }) => {
   )
 }
 
-export default LinkButton
+export default AlignButton
