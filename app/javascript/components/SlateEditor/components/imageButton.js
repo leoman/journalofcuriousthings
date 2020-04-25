@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { useEditor } from 'slate-react'
-import { insertImage, isImageActive } from '../helpers'
+import { useSlate } from 'slate-react'
+import { insertImage, isBlockActive } from '../helpers'
 import Button from './button'
 import Icon from './icon'
 import ImageOverlay from './imageOverlay'
 
-export const ImageButton = ({ icon, ...props }) => {
-  const editor = useEditor()
+export const ImageButton = ({ format, icon, ...props }) => {
+  const editor = useSlate()
   const [showImageOverlay, setShowImageOverlay] = useState(false)
   const [selection, setSelection] = useState(null)
   const handleShowImageOverlay = selection => {
@@ -24,7 +24,7 @@ export const ImageButton = ({ icon, ...props }) => {
         handleClose={handleClose}
       />
       <Button
-        active={isImageActive(editor)}
+        active={isBlockActive(editor, format)}
         onMouseDown={event => {
           event.preventDefault()
           const { selection } = editor

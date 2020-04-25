@@ -2,16 +2,17 @@ import React from 'react'
 import { useSlate } from 'slate-react'
 import Button from './button'
 import Icon from './icon'
-import { insertLineBreak, isBlockActive } from '../helpers'
+import { isBlockActive, unWrapElement } from '../helpers'
 
-export const LineBreakButton = ({ format, icon, ...props }) => {
+export const UnLinkButton = ({ format, icon, ...props }) => {
   const editor = useSlate()
   return (
     <Button
       active={isBlockActive(editor, format)}
       onMouseDown={event => {
         event.preventDefault()
-        insertLineBreak(editor)
+        const { selection } = editor
+        if (selection) unWrapElement(editor, selection)
       }}
       {...props}
     >
@@ -20,4 +21,4 @@ export const LineBreakButton = ({ format, icon, ...props }) => {
   )
 }
 
-export default LineBreakButton
+export default UnLinkButton

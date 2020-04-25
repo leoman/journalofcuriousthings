@@ -5,6 +5,7 @@ import MarkButton from './markButton'
 import BlockButton from './blockButton'
 import ImageButton from './imageButton'
 import LinkButton from './linkButton'
+import UnLinkButton from './unlinkButton'
 import EmbedButton from './embedButton'
 import AlignButton from './alignButton'
 import LineBreakButton from './lineBreakButton'
@@ -36,16 +37,17 @@ export const Toolbar = () => (
     <BlockButton format="heading-two" icon="looks_two" title="Heading 2" />
     <BlockButton format="heading-three" icon="looks_3" title="Heading 3" />
     <BlockButton format="heading-four" icon="looks_4" title="Heading 4" />
-    <BlockButton format="heading-five" icon="looks_5" title="Heading 5" />
+    {/* <BlockButton format="heading-five" icon="looks_5" title="Heading 5" /> */}
     <BlockButton format="heading-six" icon="looks_6" title="Heading 6" />
     <BlockButton format="numbered-list" icon="format_list_numbered" title="Ordered List" />
     <BlockButton format="bulleted-list" icon="format_list_bulleted" title="Unordered List" />
-    <ImageButton title="Image" icon="image" />
-    <ImageDoubleButton title="Split Image" icon="flip" />
-    <LinkButton title="Link" icon="link" />
+    <ImageButton format="image" title="Image" icon="image" />
+    <ImageDoubleButton format="double-image" title="Split Image" icon="flip" />
+    <LinkButton format="link" title="Link" icon="link" />
+    <UnLinkButton format="link" title="Remove link" icon="link_off" />
     <EmbedButton title="Video" icon="movie" />
-    <LineBreakButton title="Ruler" icon="view_stream" />
-    <MarkButton format="code" icon="code" title="Code" />
+    <LineBreakButton format="line-break" title="Ruler" icon="view_stream" />
+    {/* <MarkButton format="code" icon="code" title="Code" /> */}
   </ToolbarWrapper>
 )
 

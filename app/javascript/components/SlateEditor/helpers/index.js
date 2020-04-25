@@ -4,6 +4,12 @@ import isUrl from 'is-url'
 import imageExtensions from 'image-extensions'
 import { HOTKEYS, LIST_TYPES } from '../utils'
 
+export const resetSelection = editor => {
+  const point = { path: [0, 0], offset: 0 };
+  editor.selection = { anchor: point, focus: point };
+  editor.history = { redos: [], undos: [] };
+}
+
 export const isMarkActive = (editor, format) => {
   const marks = Editor.marks(editor)
   return marks ? marks[format] === true : false
@@ -23,7 +29,6 @@ export const isBlockActive = (editor, format) => {
   const [match] = Editor.nodes(editor, {
     match: n => n.type === format,
   })
-
   return !!match
 }
 
@@ -56,14 +61,6 @@ export const onKeyDown = event => {
   }
 }
 
-export const isImageActive = (editor) => {
-  const [match] = Editor.nodes(editor, {
-    match: n => n.type === 'image',
-  })
-
-  return !!match
-}
-
 export const insertImage = (editor, url, selection) => {
   const text = { text: '' }
   const image = { type: 'image', url, children: [text] }
@@ -84,40 +81,44 @@ export const isImageUrl = url => {
   return imageExtensions.includes(ext)
 }
 
-export const isDoubleImageActive = editor => {}
-
 export const insertDoubleImage = (editor, selection, url1, url2) => {
   const text = { text: '' }
   const image = { type: 'double-image', data: { url1, url2 }, children: [text] }
   Transforms.insertNodes(editor, image, { at: selection })
 }
 
-export const isLinkActive = editor => {
-  const [link] = Editor.nodes(editor, { match: n => n.type === 'link' })
-  return !!link
+export const unWrapElement = (editor) => {
+  try {
+    Transforms.unwrapNodes(editor, { match: n => n.type === 'link' })
+  } catch (e) {
+    console.log('unWrapElement transform has failed: ', e)
+  }
+  resetSelection(editor)
 }
 
 export const unwrapLink = editor => {
-  Transforms.unwrapNodes(editor, { match: n => n.type === 'link' })
+  try {
+    Transforms.unwrapNodes(editor, { match: n => n.type === 'link' })
+  } catch (e) {
+    console.log('Unwrap Link transform has failed: ', e)
+  }
 }
 
-export const wrapLink = (editor, url) => {
-  if (isLinkActive(editor)) {
+export const wrapLink = (editor, url, selection) => {
+  if (isBlockActive(editor, 'image')) {
     unwrapLink(editor)
   }
 
-  const { selection } = editor
   const isCollapsed = selection && Range.isCollapsed(selection)
   const link = {
     type: 'link',
     url,
     children: isCollapsed ? [{ text: url }] : [],
   }
-
   if (isCollapsed) {
     Transforms.insertNodes(editor, link)
   } else {
-    Transforms.wrapNodes(editor, link, { split: true })
+    Transforms.wrapNodes(editor, link, { split: true, at: selection })
     Transforms.collapse(editor, { edge: 'end' })
   }
 }
@@ -128,9 +129,9 @@ export const insertNewLink = (editor, element) => {
   const { selection } = editor
 }
 
-export const insertLink = (editor, url) => {
-  if (editor.selection) {
-    wrapLink(editor, url)
+export const insertLink = (editor, url, selection) => {
+  if (selection) {
+    wrapLink(editor, url, selection)
   }
 }
 
@@ -141,11 +142,9 @@ export const insertEmbed = (editor, url) => {
 }
 
 export const isAlignActive = (editor, format) => {
-  
   const [match] = Editor.nodes(editor, {
     match: n => n.inlineStyles && n.inlineStyles.textAlign === format,
   })
-
   return !!match
 }
 
@@ -176,11 +175,6 @@ export const toggleAlign = (editor, format) => {
 
   }
 
-}
-
-export const isLineBreakActive = editor => {
-  const [lineBreak] = Editor.nodes(editor, { match: n => n.type === 'line-break' })
-  return !!lineBreak
 }
 
 export const insertLineBreak = editor => {

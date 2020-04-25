@@ -27,8 +27,8 @@ const SlateEditor = () => {
         renderElement={renderElement}
         renderLeaf={renderLeaf}
         placeholder=""
-        spellCheck
-        autoFocus={true}
+        spellCheck={true}
+        autoFocus={false}
         className="slate-editor"
         onKeyDown={onKeyDown}
       />

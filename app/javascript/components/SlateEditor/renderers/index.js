@@ -1,8 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { useSelected, useFocused, useEditor } from 'slate-react'
 import { css } from 'emotion'
-import { insertNewImage, removeElement, insertNewLink } from '../helpers'
-import ImageOverlay from '../components/imageOverlay'
+import { insertNewImage, removeElement, insertNewLink, unWrapElement } from '../helpers'
 import Icon from '../components/icon'
 
 export const Leaf = ({ attributes, children, leaf }) => {
@@ -39,11 +38,11 @@ export const ImageElement = ({ attributes, children, element }) => {
   const handleClose = () => setShowImageOverlay(false)
   const handleSubmit = url => insertNewImage(editor, selection, url)
   return (
-    <ContentWrapperWithMenu attributes={attributes} element={element}>
+    <ContentWrapperWithRemove attributes={attributes} element={element}>
       <div>
         <div contentEditable={false}>
           <img
-            // onDoubleClick={handleShowImageOverlay}
+            onDoubleClick={handleShowImageOverlay}
             src={element.url}
             className={css`
               display: block;
@@ -55,7 +54,7 @@ export const ImageElement = ({ attributes, children, element }) => {
         </div>
         {children}
       </div>
-    </ContentWrapperWithMenu>
+    </ContentWrapperWithRemove>
   )
 }
 
@@ -64,7 +63,7 @@ export const DoubleImageElement = ({ attributes, children, element }) => {
   const focused = useFocused()
   const editor = useEditor()
   return (
-    <ContentWrapperWithMenu attributes={attributes} element={element}>
+    <ContentWrapperWithRemove attributes={attributes} element={element}>
       <div>
         <div contentEditable={false}>
           <div className="double">
@@ -87,7 +86,7 @@ export const DoubleImageElement = ({ attributes, children, element }) => {
         </div>
         {children}
       </div>
-    </ContentWrapperWithMenu>
+    </ContentWrapperWithRemove>
   )
 }
 
@@ -96,7 +95,7 @@ export const VideoElement = ({ attributes, children, element }) => {
   const selected = useSelected()
   const focused = useFocused()
   return (
-    <ContentWrapperWithMenu attributes={attributes} element={element}>
+    <ContentWrapperWithRemove attributes={attributes} element={element}>
       <div>
         <div
           contentEditable={false}
@@ -129,24 +128,28 @@ export const VideoElement = ({ attributes, children, element }) => {
         </div>
         {children}
       </div>
-    </ContentWrapperWithMenu>
+    </ContentWrapperWithRemove>
   )
 }
 
 export const LinkElement = ({ attributes, children, element }) => {
   const editor = useEditor()
   return (
-    <a onDoubleClick={() => insertNewLink(editor, element)}  {...attributes} href={element.url}>
+    <a
+      {...attributes}
+      // onDoubleClick={() => insertNewLink(editor, element)}
+      href={element.url}
+    >
       {children}
     </a>
   )
-};
+}; 
 
 export const LineBreakElement = ({ attributes, children, element }) => {
   const selected = useSelected()
   const focused = useFocused()
   return (
-    <ContentWrapperWithMenu attributes={attributes} element={element}>
+    <ContentWrapperWithRemove attributes={attributes} element={element}>
       <div>
         <div contentEditable={false}>
           <div
@@ -156,11 +159,11 @@ export const LineBreakElement = ({ attributes, children, element }) => {
           </div>
         </div>
       </div>
-    </ContentWrapperWithMenu>
+    </ContentWrapperWithRemove>
   )
 }
 
-export const ContentWrapperWithMenu = ({ attributes, element, children }) => {
+export const ContentWrapperWithRemove = ({ attributes, element, children }) => {
   const editor = useEditor()
   const selected = useSelected()
   const focused = useFocused()

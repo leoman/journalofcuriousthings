@@ -1,24 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Range } from 'slate'
 import { useSlate } from 'slate-react'
 import Button from './button'
 import Icon from './icon'
-import { isLinkActive, insertLink } from '../helpers'
+import LinkOverlay from './linkOverlay'
+import { isBlockActive, insertLink } from '../helpers'
 
-const LinkButton = ({ icon, ...props }) => {
+const LinkButton = ({ format, icon, ...props }) => {
   const editor = useSlate()
+  const [showLinkOverlay, setShowLinkOverlay] = useState(false)
+  const [selection, setSelection] = useState(null)
+  const handleShowLinkOverlay = selection => {
+    setSelection(selection)
+    setShowLinkOverlay(true)
+  }
+  const handleClose = () => setShowLinkOverlay(false)
+  const handleSubmit = url => insertLink(editor, url, selection)
   return (
-    <Button
-      active={isLinkActive(editor)}
-      onMouseDown={event => {
-        event.preventDefault()
-        const url = window.prompt('Enter the URL of the link:')
-        if (!url) return
-        insertLink(editor, url)
-      }}
-      {...props}
-    >
-      <Icon>{icon}</Icon>
-    </Button>
+    <>
+      <LinkOverlay
+        showLinkOverlay={showLinkOverlay}
+        handleSubmit={handleSubmit}
+        handleClose={handleClose}
+      />
+      <Button
+        active={isBlockActive(editor, format)}
+        onMouseDown={event => {
+          event.preventDefault()
+          const { selection } = editor
+          const isCollapsed = selection && Range.isCollapsed(selection)
+          if (selection && !isCollapsed) handleShowLinkOverlay(selection)
+        }}
+        {...props}
+      >
+        <Icon>{icon}</Icon>
+      </Button>
+    </>
   )
 }
 

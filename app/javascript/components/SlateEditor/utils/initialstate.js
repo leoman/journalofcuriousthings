@@ -6,7 +6,13 @@ export const initialstate = [
     },
     children: [
       { text: `Scandi Weekend:`, bold: true },
-      { text: ` Stockholm's Amazing Metro` }],
+      {
+        type: 'link',
+        url: 'http://www.bla.com',
+        children: [{ text: ` Stockholm's` }],
+      },
+      { text: ` Amazing Metro` }
+    ],
   },
   {
     type: 'double-image',
@@ -74,21 +80,29 @@ export const initialstate = [
     },
     children: [{ text: `Much of Stockholm is incredibly lovely to simply stroll around, but the same could not be said of our lengthy trudge along the duel carriageway in the grey, gathering dusk. We had to divert several times, striking off into a housing estate as the route was not pedestrian friendly. Another obvious indication that VISITING THIS BUILDING IS NOT A COOL OR FUN THING TO DO WENDY!!!` }],
   },
+
+
+
+  // testers
+
   // {
   //   type: 'video',
   //   url: 'https://www.youtube.com/embed/hJa3IX2OKB4',
   //   children: [{ text: '' }],
   // },
+
   // {
   //   type: 'image',
   //   url: 'https://live.staticflickr.com/7876/47200575021_9fb7850399_b.jpg',
   //   children: [{ text: '' }],
   // },
+
   // {
   //   type: 'align',
   //   align: 'center',
   //   children: [{ text: 'In addition to block nodes, you can create inline nodes, like' }],
   // },
+
   // {
   //   children: [
   //     {
@@ -104,6 +118,7 @@ export const initialstate = [
   //     },
   //   ],
   // },
+
   // {
   //   type: 'paragraph',
   //   children: [
@@ -132,15 +147,5 @@ export const initialstate = [
   //     },
   //   ],
   // },
-  // {
-  //   type: 'block-quote',
-  //   children: [{ text: 'A wise quote.' }],
-  // },
-  // {
-  //   type: 'paragraph',
-  //   inlineStyles: {
-  //     textAlign: 'center'
-  //   },
-  //   children: [{ text: 'Try it out for yourself!' }],
-  // },
+  
 ]
