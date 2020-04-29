@@ -16,6 +16,7 @@ class Product < ApplicationRecord
   has_many_attached :images
   has_many :product_themes
   has_many :themes, through: :product_themes
+  has_many :orders
 
   def set_slug
     self.slug = title.to_s.parameterize

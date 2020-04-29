@@ -1,0 +1,40 @@
+<div class="content-wrapper">
+
+  <%= render partial: "layouts/shared/breadcrumbs", locals: { linkText: @title } %>
+
+  <div class="content-section-wrapper">  
+            
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Status</th>
+          <th colspan="4"></th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% if @orders %>
+          <% @orders.each do |order| %>
+            <tr>
+                <td><%= order.date.to_s(:long) %></td>
+                <td><%= order.status.capitalize %></td>
+                <td class="text-center">
+                  <%= link_to 'Show', admin_order_path(order), class: "btn --blue" %>
+                </td>
+            </tr>
+          <% end %>
+        <% end %> 
+      </tbody>
+    </table>
+
+  </div>
+
+  <% if @paginated %>
+    <div class="content-section-wrapper">
+      <%= link_to 'Previous', { controller: "orders", action: "index", page: @page - 1 }, class: "btn" unless @page <= 0 %>
+      <%= link_to "Next", { controller: "orders", action: "index", page: @page + 1 }, class: "btn" unless @page >= @paginated -1  %>
+    </div>
+  <% end %>
+
+</div>
