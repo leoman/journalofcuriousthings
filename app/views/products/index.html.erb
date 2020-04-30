@@ -1,0 +1,20 @@
+<div>
+  <h1>List of products</h1>
+
+  <%= form_with(url: orders_submit_path, local: true, id: 'order-details') do |form| %>
+    <input type="hidden" value="paypal" name="orders[payment_gateway]" />
+     
+    <%= @products.each do |product| %>
+      <div class='data-charges-and-payments-section'>
+      <%= form.radio_button('orders[product_id]', product.id) %>
+      <span><%= product.title %>
+      <span><%= product.price %>
+    <% end %>
+
+    <hr />
+
+    <h2>Payment Method</h2>
+
+  <% end %>
+
+</div>
