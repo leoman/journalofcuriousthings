@@ -11,6 +11,13 @@ module KirstyShop
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.active_storage.replace_on_assign_to_many = false
+    
+    config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
+
+    config_file = Rails.application.config_for(:payment_gateway)
+    config_file.each do |key,value|
+      ENV[key.to_s] = value
+    end unless config_file.nil?
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

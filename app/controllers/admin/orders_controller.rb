@@ -4,7 +4,7 @@ class Admin::OrdersController < Admin::BaseController
   before_action :set_page, :set_total, :set_total_pages, only: [:index]
 
   def index
-    @orders = Order.order(date: :desc).limit(@@posts_per_page).offset(@page * @@posts_per_page)
+    @orders = Order.order(created_at: :desc).limit(@@posts_per_page).offset(@page * @@posts_per_page)
   end
 
   private

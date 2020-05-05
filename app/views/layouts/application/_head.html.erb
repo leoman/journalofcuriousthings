@@ -2,7 +2,9 @@
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
 
-
+<%= javascript_include_tag "zepto.min.js" %>
 <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
 <link href="https://fonts.googleapis.com/css?family=Heebo|Barlow+Condensed:400,300|Sacramento&display=swap" rel="stylesheet">
+
+<script src="https://www.paypal.com/sdk/js?client-id=<%= ENV['PAYPAL_CLIENT_ID']%>&currency=GBP" type=""></script>
