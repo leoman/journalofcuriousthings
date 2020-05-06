@@ -6,7 +6,7 @@
 
     <% @posts.each do |post| %>
       <div class="item blog">
-        <%= link_to show_path(post.slug) do %>
+        <%= link_to post_show_path(post.slug) do %>
         
           <div class="content">
             <div class="effect-wrapper">

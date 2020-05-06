@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get "/sign_out" => "sessions#destroy", as: "sign_out"
   get "/sign_up" => "users#new", as: "sign_up"
   get '/(/:page)', to: 'posts#index', defaults: { page: '0' }, constraints: { page: /[0-9]/ }
-  get '/posts/:slug', to: 'posts#show', as: :show
+  get '/posts/:slug', to: 'posts#show', as: :post_show
+  get '/products/:slug', to: 'products#show', as: :product_show
   get 'tags/:tag', to: 'posts#tags', as: :tag
 
   post 'orders/submit', to: 'orders#submit'
