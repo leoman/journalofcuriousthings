@@ -1,14 +1,16 @@
-.post {
+.product {
 
-  .post-block {
+  display: flex;
+
+  .product-content {
     width: 100%;
     @media (min-width: 1024px) {
-      width: 60%;
+      width: 40%;
     }
   }
 
-  .sidebar {
-    width: 40%;
+  .product-images {
+    width: 60%;
     margin-left: 20px;
     display: none;
 
@@ -17,7 +19,8 @@
     }
   }
 
-  .title {
+  .title,
+  .price {
 
     h2 {
       font-size: 3rem;
@@ -44,7 +47,7 @@
     }
   }
 
-  .image {
+  .product-images {
     padding: 5px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
     border-radius: 5px;
