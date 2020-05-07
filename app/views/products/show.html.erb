@@ -17,8 +17,8 @@
         <%= raw @product.description %>
       </div>
 
-      <div class="buy">
-        Add to cart
+      <div class="add-to-cart">
+        <%= link_to 'Add to cart', orders_details_path(@product.slug), class: 'btn --buy' %>
       </div>
 
     </div>
@@ -26,6 +26,12 @@
     <div class="product-images">
       <% if @product.mainImage.attached? %>
         <img src="<%= (url_for(@product.mainImage)) %>" />
+      <% end %>
+
+      <% if @product.mainImage.attached? %>
+        <% @product.images.each do |image| %> 
+          <img src="<%= (url_for(image)) %>" />
+        <% end %>
       <% end %>
     </div>
 

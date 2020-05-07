@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/products/:slug', to: 'products#show', as: :product_show
   get 'tags/:tag', to: 'posts#tags', as: :tag
 
+  get 'orders/details/:slug' => 'orders#details', as: :orders_details
   post 'orders/submit', to: 'orders#submit'
   post 'orders/paypal/create_payment'  => 'orders#paypal_create_payment', as: :paypal_create_payment
   post 'orders/paypal/execute_payment'  => 'orders#paypal_execute_payment', as: :paypal_execute_payment

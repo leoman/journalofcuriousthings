@@ -7,4 +7,21 @@
   p {
     padding-bottom: .5rem;
   }
+
+  strong {
+    font-weight: 700;
+  }
+
+  .main-image {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .product-image {
+    width: auto;
+    height: auto;
+    max-width: 50%;
+  }
+  
 }

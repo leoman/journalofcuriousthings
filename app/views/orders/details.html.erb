@@ -1,0 +1,22 @@
+
+Step 1 -> Register details
+
+Step 2 -> Purchase
+
+<%= form_with(url: orders_details_path(@product.slug), local: true, class: 'content-section-wrapper') do |form| %>
+
+  <div class="input-wrapper">
+    <%= form.label :full_name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= form.submit 'Submit', class: "btn --submit" %>
+  </div>
+
+<% end %>

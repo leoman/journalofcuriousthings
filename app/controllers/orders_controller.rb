@@ -5,6 +5,15 @@ class OrdersController < ApplicationController
   SUCCESS_MESSAGE = 'Order Performed Successfully!'
   FAILURE_MESSAGE = 'Oops something went wrong. Please call the administrator'
 
+  def details
+    @product = Product.find_by slug: params[:slug], status: Product.statuses[:live]
+    if @product
+      
+    else
+      render html: FAILURE_MESSAGE
+    end
+  end
+
   def submit
     @order = nil
     @order = Orders::Paypal.finish(order_params[:charge_id])

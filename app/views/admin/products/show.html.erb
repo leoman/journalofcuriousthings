@@ -20,6 +20,13 @@
 
     <div class="block-content">
       <p>
+        <strong>URL Slug:</strong>
+        <%= @product.slug %>
+      </p>
+    </div>
+
+    <div class="block-content">
+      <p>
         <strong>Subtitle:</strong>
         <%= @product.subtitle %>
       </p>
@@ -55,22 +62,22 @@
 
     <% if @product.mainImage.attached? %>
       <div class="block-content">
-        <p>Current main image uploaded</p>
-          <img class="max-w-md" src="<%= (url_for(@product.mainImage)) %>" />
-          <%= link_to 'Remove', delete_image_attachment_admin_product_url(@product.mainImage.id),
-          method: :delete,
-            data: { confirm: 'Are you sure?' } %>
+        <p><strong>Current main image uploaded</strong></p>
+          <img class="main-image" src="<%= (url_for(@product.mainImage)) %>" />
+          <p class="remove">
+            <%= link_to 'Remove Image', delete_image_attachment_admin_product_url(@product.mainImage.id), method: :delete, class: 'btn --red', data: { confirm: 'Are you sure?' } %>
+          </p>
       </div>
     <% end %>
 
     <% if @product.images.attached? %>
       <div class="block-content">
-        <p>Current images uploaded</p>
+        <p><strong>Current images uploaded</strong></p>
         <% @product.images.each do |image| %> 
-          <img class="max-w-md" src="<%= (url_for(image)) %>" />
-          <%= link_to 'Remove', delete_image_attachment_admin_product_url(image.id),
-        method: :delete,
-          data: { confirm: 'Are you sure?' } %>
+          <img class="product-image" src="<%= (url_for(image)) %>" />
+          <p class="remove">
+            <%= link_to 'Remove Image', delete_image_attachment_admin_product_url(image.id), method: :delete, class: 'btn --red', data: { confirm: 'Are you sure?' } %>
+          </p>
         <% end %>
       </div>
     <% end %>
