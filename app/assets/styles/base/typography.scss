@@ -4,3 +4,39 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+}
+
+strong {
+  font-weight: 700;
+}
+
+p {
+
+  &.--large {
+    font-size: 21px;
+    font-family: 'Heebo', sans-serif;
+    letter-spacing: -0.004em;
+    line-height: 1.58;
+    word-break: break-word;
+  }
+ 
+}
+
+.--margin-bottom-1 {
+  margin-bottom: 1rem;
+}

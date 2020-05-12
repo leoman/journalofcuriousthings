@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   get 'tags/:tag', to: 'posts#tags', as: :tag
 
   get 'orders/details/:slug' => 'orders#details', as: :orders_details
-  post 'orders/submit', to: 'orders#submit'
-  post 'orders/paypal/create_payment'  => 'orders#paypal_create_payment', as: :paypal_create_payment
+  post 'orders/create' => 'orders#create', as: :orders_create
+  get 'orders/checkout/:order_id' => 'orders#checkout', as: :orders_checkout
+  patch 'orders/submit', to: 'orders#submit'
+  patch 'orders/paypal/create_payment'  => 'orders#paypal_create_payment', as: :paypal_create_payment
   post 'orders/paypal/execute_payment'  => 'orders#paypal_execute_payment', as: :paypal_execute_payment
 
   resources :posts, only: [:index, :show]

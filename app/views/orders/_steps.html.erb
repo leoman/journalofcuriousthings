@@ -1,0 +1,20 @@
+<%
+  links = [
+    'Register details',
+    'Purchase product',
+    'Confirmation',
+  ]
+%>
+
+<div class="progress">
+
+  <div class="progress-track"></div>
+
+  <% links.each_with_index do | value, index | %>
+  <div id="step<%= index %>"
+    class="progress-step <%= 'is-complete' if section > index %> <%= 'is-active' if section === index %>">
+    <%= value %>
+  </div>
+  <% end %>
+
+</div>

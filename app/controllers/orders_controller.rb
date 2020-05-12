@@ -8,10 +8,28 @@ class OrdersController < ApplicationController
   def details
     @product = Product.find_by slug: params[:slug], status: Product.statuses[:live]
     if @product
-      
+      @order = Order.new
+      @order.product_id = @product.id
+      @order.set_paypal_payment_gateway
     else
-      render html: FAILURE_MESSAGE
+      @message = FAILURE_MESSAGE
     end
+  end
+  
+  def create
+    @order = Order.new(order_params)
+
+    respond_to do |format|
+      if @order.save
+        format.html { redirect_to orders_checkout_path(@order), notice: 'Order was successfully created.' }
+      else
+        format.html { render :details }
+      end
+    end
+  end
+
+  def checkout
+    @order = Order.recently_created.find_by! id: params[:order_id]
   end
 
   def submit
@@ -21,16 +39,18 @@ class OrdersController < ApplicationController
     if @order&.save
       if @order.paid?
         # Success is rendere when order is paid and saved
-        return render html: SUCCESS_MESSAGE
+        # return render html: SUCCESS_MESSAGE
       elsif @order.failed? && !@order.error_message.blank?
         # Render error only if order failed and there is an error_message
         return render html: @order.error_message
       end
     end
-    render html: FAILURE_MESSAGE
+
+    # render html: FAILURE_MESSAGE
   end
 
   def paypal_create_payment
+    # byebug
     result = Orders::Paypal.create_payment(order: @order, product: @product)
     if result
       render json: { token: result }, status: :ok
@@ -50,14 +70,16 @@ class OrdersController < ApplicationController
   private
   # Initialize a new order and and set its user, product and price.
   def prepare_new_order
-    @order = Order.new(order_params)
+    @order = Order.recently_created.find_by(id: order_params[:id])
+    # @order = Order.new(order_params)
     # @order.user_id = current_user.id
     @product = Product.find(@order.product_id)
     @order.price_cents = @product.price
   end
 
   def order_params
-    params.require(:orders).permit(:product_id, :token, :payment_gateway, :charge_id)
+    # byebug
+    params.require(:order).permit(:id, :name, :email, :product_id, :token, :payment_gateway, :charge_id)
   end
   
 end

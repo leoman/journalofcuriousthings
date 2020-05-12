@@ -1,0 +1,64 @@
+<%= render 'steps', section: 1 %>
+
+<div>
+
+  <%= form_with(model: @order, url: orders_submit_path, local: true, id: 'order-details') do |form| %>
+
+  <%= form.hidden_field :id  %>
+
+  <h2>Payment</h2>
+
+  <div id="submit-paypal"></div>
+
+  <% end %>
+
+</div>
+
+<div class="summary">
+
+
+
+</div>
+
+<script>
+
+  (function setupPaypal() {
+    function isPayment() {
+      // return $('input[name="orders[product_id]"]:checked').length
+    }
+
+    function submitOrderPaypal(chargeID) {
+      var $form = $("#order-details");
+      // Add a hidden input orders[charge_id]
+      $form.append($('<input type="hidden" name="order[charge_id]"/>').val(chargeID));
+
+      $form.submit();
+      console.log('submitOrderPaypal happened');
+    }
+
+    paypal.Buttons({
+      env: "#{ENV['PAYPAL_ENV']}",
+      createOrder: function () {
+        // if (isPayment()) {
+        console.log("<%= paypal_create_payment_url %>")
+        return $.post("<%= paypal_create_payment_url %>", $('#order-details').serialize()).then(function (data) {
+          console.log('createOrder finished', data.token)
+          return data.token;
+        });
+        // }
+      },
+      onApprove: function (data) {
+        // if (isPayment()) {
+        return $.post("<%= paypal_execute_payment_url %>", {
+          paymentID: data.paymentID,
+          payerID: data.payerID
+        }).then(function () {
+          console.log('onApprove finished', data.paymentID)
+          submitOrderPaypal(data.paymentID)
+        });
+        // }
+      }
+    }).render('#submit-paypal');
+  }());
+
+</script>

@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%= render "layouts/application/head" %>
-  </head>
 
-  <body>
-    <div class="page">
-      <%= render "layouts/application/header" %>
-      <%= render partial: "layouts/shared/flash_messages" %>
-      <%= render "layouts/application/navigation" %>
+<head>
+  <%= render "layouts/application/head" %>
+</head>
 
-      <div class="content">
-        <div class="margin-sides">
-          <%= yield %>
-        </div>
+<body>
+  <div class="page">
+    <%= render "layouts/application/header" %>
+    <!-- <%= render partial: "layouts/shared/flash_messages" %> -->
+    <%= render "layouts/application/navigation" %>
+
+    <div class="content">
+      <div class="margin-sides">
+        <%= yield %>
       </div>
-
-      <%= render "layouts/application/footer" %>
     </div>
 
-    </div>
-  </body>
+    <%= render "layouts/application/footer" %>
+  </div>
+
+  </div>
+</body>
+
 </html>

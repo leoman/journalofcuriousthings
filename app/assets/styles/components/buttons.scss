@@ -1,0 +1,30 @@
+.btn {
+  display: block;
+  color: $oxford-blue;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-weight: 700;
+  border-radius: 0.25rem;
+  background-color: $catskill-white;
+  margin-right: 0.5rem;
+  display: inline-block;
+  font-size: 16px;
+
+  &:hover {
+    background-color: $geyser;
+  }
+
+  &.--submit {
+    background-color: $keppel;
+    border-color: $keppel;
+    color: $white;
+    border-width: 0;
+
+    &:hover {
+      background-color: $paradiso;
+      border-color: $paradiso;
+    }
+  }
+}

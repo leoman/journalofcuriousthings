@@ -1,0 +1,121 @@
+.progress {
+  position: relative;
+  display: flex;
+  margin-bottom: 1rem;
+
+  // Pulse animation for Step's circle in active state
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(33,131,221, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(33,131,221, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(33,131,221, 0); }
+  }
+
+  @keyframes nextStep {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+
+  .progress-track {
+    position: absolute;
+    top: 8px;
+    width: 100%;
+    height: 5px;
+    background-color: $catskill-white;
+    z-index: -1;
+  }
+
+  .progress-step {
+    position: relative;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+
+    .material-icons {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 12px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    // Hide the final step's progress bar
+    &:last-child:after {
+      display: none;
+    }
+
+    &:before {
+      font-family: 'Material Icons';
+      content: "";
+      display: flex;
+      margin: 0 auto;
+      margin-bottom: 10px;
+      width: 14px;
+      height: 14px;
+      background: $white;
+      border: 4px solid $catskill-white;
+      border-radius: 100%;
+      color: $black;
+      font-weight: normal;
+      font-style: normal;
+      font-size: 12px;
+      line-height: 1;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    // Step's progress bar in default state
+    &:after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      width: 0%;
+      transition: width 1s ease-in;
+      height: 5px;
+      background: $catskill-white;
+      z-index: -1;
+    }
+
+    &.is-active {
+      color: $darker-pink;
+    
+      &:before {
+        border: 4px solid $slate-gray;
+        animation: pulse 2s infinite;
+      }
+    }
+
+    &.is-complete {
+      color: $carnation;
+    
+      // Step's circle in complete state
+      &:before {
+        content: "done";
+        font-size: 14px;
+        font-weight: 700;
+        color: $white;
+        background: $carnation;
+        border: 4px solid transparent;
+      }
+    
+      // Step's progress bar in complete state
+      &:after {
+        background: $slate-gray;
+        animation: nextStep 1s;
+        animation-fill-mode: forwards;
+      }
+    }
+
+  }
+
+}

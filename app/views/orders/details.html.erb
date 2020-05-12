@@ -1,22 +1,46 @@
+<%= render 'steps', section: 0 %>
 
-Step 1 -> Register details
+<p class="--large --margin-bottom-1">Please enter your full name, and the email address you would like to recive the
+  product to.</p>
 
-Step 2 -> Purchase
+<%= form_with(model: @order, orders: @order, url: orders_create_path, local: true, class: 'content-section-wrapper --full-border base') do |form| %>
 
-<%= form_with(url: orders_details_path(@product.slug), local: true, class: 'content-section-wrapper') do |form| %>
+<%= form.hidden_field :product_id %>
 
-  <div class="input-wrapper">
-    <%= form.label :full_name %>
-    <%= form.text_field :name %>
+<div class="input-wrapper">
+  <%= form.label :full_name %>
+  <%= form.text_field :name, class: "--half-width" %>
+
+  <% if @order.errors.any? %>
+  <div class="error_explanation">
+    <ul>
+      <% @order.errors.full_messages_for(:name).each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
   </div>
+  <% end %>
 
-  <div class="input-wrapper">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
+</div>
 
-  <div class="input-wrapper">
-    <%= form.submit 'Submit', class: "btn --submit" %>
+<div class="input-wrapper">
+  <%= form.label :email %>
+  <%= form.text_field :email, class: "--half-width" %>
+
+  <% if @order.errors.any? %>
+  <div class="error_explanation">
+    <ul>
+      <% @order.errors.full_messages_for(:email).each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
   </div>
+  <% end %>
+
+</div>
+
+<div class="input-wrapper">
+  <%= form.submit 'Submit', class: "btn --submit" %>
+</div>
 
 <% end %>
