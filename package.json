@@ -1,6 +1,9 @@
 {
   "name": "kirstyShop",
   "private": true,
+  "scripts": {
+    "webpack": "./bin/webpack-dev-server"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.9.4",
     "@rails/actioncable": "^6.0.0-alpha",
