@@ -1,22 +1,26 @@
 <%= render 'steps', section: 1 %>
 
-<div>
+<div class="panels-wrapper">
 
-  <%= form_with(model: @order, url: orders_submit_path, local: true, id: 'order-details') do |form| %>
+  <div class="panel --width-60 --margin-right">
 
-  <%= form.hidden_field :id  %>
+    <%= form_with(model: @order, url: orders_submit_path, local: true, id: 'order-details') do |form| %>
 
-  <h2>Payment</h2>
+      <%= form.hidden_field :id  %>
 
-  <div id="submit-paypal"></div>
+      <h2>Payment</h2>
 
-  <% end %>
+      <div id="submit-paypal"></div>
 
-</div>
+    <% end %>
 
-<div class="summary">
+  </div>
 
-
+  <div class="panel --width-40 --margin-left">
+    <div class="content-section-wrapper --full-border">
+      <%= render 'summary', product: @product %>
+    </div>
+  </div>
 
 </div>
 

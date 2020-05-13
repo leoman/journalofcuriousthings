@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
   
   def create
     @order = Order.new(order_params)
+    @product = Product.find(@order.product_id)
 
     respond_to do |format|
       if @order.save
@@ -30,6 +31,7 @@ class OrdersController < ApplicationController
 
   def checkout
     @order = Order.recently_created.find_by! id: params[:order_id]
+    @product = Product.find(@order.product_id)
   end
 
   def submit

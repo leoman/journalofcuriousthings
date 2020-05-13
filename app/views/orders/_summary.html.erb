@@ -1,0 +1,18 @@
+<div class="product-summary">
+  
+  <div class="panels-wrapper">
+
+    <div class="panel --half">
+      <p class="title"><%= product.title %></p>
+      <p class="price">£ <%= product.price %></p>
+      <p class="subtitle"><%= product.subtitle %></p>
+    </div>
+
+    <% if product.mainImage.attached? %>
+    <div class="panel --half">
+      <img class="image" src="<%= (url_for(product.mainImage)) %>" />
+    </div>
+    <% end %>
+  </div>
+
+</div>

@@ -3,44 +3,59 @@
 <p class="--large --margin-bottom-1">Please enter your full name, and the email address you would like to recive the
   product to.</p>
 
-<%= form_with(model: @order, orders: @order, url: orders_create_path, local: true, class: 'content-section-wrapper --full-border base') do |form| %>
 
-<%= form.hidden_field :product_id %>
+<div class="panels-wrapper">
 
-<div class="input-wrapper">
-  <%= form.label :full_name %>
-  <%= form.text_field :name, class: "--half-width" %>
+  <div class="panel --width-60 --margin-right">
 
-  <% if @order.errors.any? %>
-  <div class="error_explanation">
-    <ul>
-      <% @order.errors.full_messages_for(:name).each do |message| %>
-      <li><%= message %></li>
+    <%= form_with(model: @order, orders: @order, url: orders_create_path, local: true, class: 'content-section-wrapper --full-border base') do |form| %>
+
+    <%= form.hidden_field :product_id %>
+
+    <div class="input-wrapper">
+      <%= form.label :full_name %>
+      <%= form.text_field :name %>
+
+      <% if @order.errors.any? %>
+      <div class="error_explanation">
+        <ul>
+          <% @order.errors.full_messages_for(:name).each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
       <% end %>
-    </ul>
-  </div>
-  <% end %>
 
-</div>
+    </div>
 
-<div class="input-wrapper">
-  <%= form.label :email %>
-  <%= form.text_field :email, class: "--half-width" %>
+    <div class="input-wrapper">
+      <%= form.label :email %>
+      <%= form.text_field :email %>
 
-  <% if @order.errors.any? %>
-  <div class="error_explanation">
-    <ul>
-      <% @order.errors.full_messages_for(:email).each do |message| %>
-      <li><%= message %></li>
+      <% if @order.errors.any? %>
+      <div class="error_explanation">
+        <ul>
+          <% @order.errors.full_messages_for(:email).each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
       <% end %>
-    </ul>
+
+    </div>
+
+    <div class="input-wrapper">
+      <%= form.submit 'Submit', class: "btn --submit" %>
+    </div>
+
+    <% end %>
+
   </div>
-  <% end %>
+
+  <div class="panel --width-40 --margin-left">
+    <div class="content-section-wrapper --full-border">
+      <%= render 'summary', product: @product %>
+    </div>
+  </div>
 
 </div>
-
-<div class="input-wrapper">
-  <%= form.submit 'Submit', class: "btn --submit" %>
-</div>
-
-<% end %>

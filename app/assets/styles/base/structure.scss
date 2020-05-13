@@ -53,3 +53,31 @@
     justify-content: space-between;
   }
 }
+
+.panels-wrapper {
+  display: flex;
+
+  .panel {
+
+    &.--width-60 {
+      width: 60%;
+    }
+
+    &.--width-40 {
+      width: 40%;
+    }
+
+    &.--half {
+      width: 50%;
+    }
+
+    &.--margin-right {
+      margin-right: 1rem;
+    }
+
+    &.--margin-left {
+      margin-left: 1rem;
+    }
+
+  }
+}
