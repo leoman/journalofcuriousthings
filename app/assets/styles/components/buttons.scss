@@ -11,20 +11,22 @@
   margin-right: 0.5rem;
   display: inline-block;
   font-size: 16px;
+  letter-spacing: 1.2px;
 
   &:hover {
     background-color: $geyser;
   }
 
-  &.--submit {
-    background-color: $keppel;
-    border-color: $keppel;
-    color: $white;
-    border-width: 0;
+  &.--buy {
+    background-color: $white;
+    border: 2px solid $darker-pink;
+    color: $darker-pink;
+    margin: 2rem 0;
 
     &:hover {
-      background-color: $paradiso;
-      border-color: $paradiso;
+      background-color: $darker-pink;
+      border-color: $darker-pink;
+      color: $white;
     }
   }
 }
