@@ -17,16 +17,20 @@
     background-color: $geyser;
   }
 
-  &.--buy {
+  &.--buy,
+  &.--submit {
     background-color: $white;
     border: 2px solid $darker-pink;
     color: $darker-pink;
-    margin: 2rem 0;
 
     &:hover {
       background-color: $darker-pink;
       border-color: $darker-pink;
       color: $white;
     }
+  }
+
+  &.--buy {
+    margin: 2rem 0;
   }
 }

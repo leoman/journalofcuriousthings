@@ -31,6 +31,12 @@
       // return $('input[name="orders[product_id]"]:checked').length
     }
 
+    function updateStepsProgress() {
+      const $step1 = $("#step1");
+      $step1.addClass('is-complete')
+      $step1.removeClass('is-active')
+    }
+
     function submitOrderPaypal(chargeID) {
       var $form = $("#order-details");
       // Add a hidden input orders[charge_id]
@@ -57,8 +63,10 @@
           paymentID: data.paymentID,
           payerID: data.payerID
         }).then(function () {
-          console.log('onApprove finished', data.paymentID)
-          submitOrderPaypal(data.paymentID)
+          setTimeout(() => {
+            submitOrderPaypal(data.paymentID)
+          }, 500)
+          updateStepsProgress()
         });
         // }
       }
