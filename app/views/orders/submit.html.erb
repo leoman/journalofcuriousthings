@@ -1,3 +1,23 @@
 <%= render 'steps', section: 3 %>
 
-<%= @order.inspect %>
+<div class="panels-wrapper">
+
+  <div class="panel --width-60 --margin-right">
+    <% if @order.failed? && !@order.error_message.blank? %>
+      <%= @order.error_message %>
+    <% elsif @order.paid? %>
+      <h3>Your purchase has been successful for <%= @product.title %></h3>
+      <p>The item will shortly be sent to the following email. <%= @order.email %></p>
+      <p>If the product does not appear within 48 hours, please contact our support at support@journalofcuriousthings.com</p>
+    <% else %>
+      <p>An error has occured while attempting to purchase a product, please contact our support at support@journalofcuriousthings.com</p>
+    <% end %>
+  </div>
+
+  <div class="panel --width-40 --margin-left">
+    <div class="content-section-wrapper --full-border">
+      <%= render 'summary', product: @product %>
+    </div>
+  </div>
+
+</div>

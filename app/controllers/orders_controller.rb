@@ -37,18 +37,13 @@ class OrdersController < ApplicationController
   def submit
     @order = nil
     @order = Orders::Paypal.finish(order_params[:charge_id])
+    @product = Product.find(@order.product_id)
   ensure
     if @order&.save
-      if @order.paid?
-        # Success is rendere when order is paid and saved
-        # return render html: SUCCESS_MESSAGE
-      elsif @order.failed? && !@order.error_message.blank?
-        # Render error only if order failed and there is an error_message
-        return render html: @order.error_message
-      end
+      
+    else 
+      @error = FAILURE_MESSAGE
     end
-
-    # render html: FAILURE_MESSAGE
   end
 
   def paypal_create_payment
