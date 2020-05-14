@@ -29,6 +29,7 @@
               <td><%= product.date.to_s(:long) %></td>
               <td><%= product.product_type.capitalize %></td>
               <td><%= product.status.capitalize %></td>
+              <td><%= humanized_money_with_symbol format_price product.price_cents %></td>
               <td class="text-center">
                 <%= link_to 'Preview', preview_admin_product_path(product), class: "btn --blue" %>
               </td>

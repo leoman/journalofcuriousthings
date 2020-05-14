@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
 
-  enum status: [:draft, :live, :archived]
-  enum product_type: [:print, :class]
+  enum status: { draft: 0, live: 1, archived: 2 }
+  enum product_type: { print: 0, class: 1 }
 
   after_validation :set_slug, only: [:create, :update]
 
@@ -10,7 +10,7 @@ class Product < ApplicationRecord
   validates :date, presence: true
   validates :status, presence: true
   validates :product_type, presence: true
-  validates :price, presence: true, numericality: true
+  validates :price_cents, presence: true, numericality: true
 
   has_one_attached :mainImage
   has_many_attached :images

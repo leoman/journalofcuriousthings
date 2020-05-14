@@ -4,7 +4,7 @@
 
     <div class="panel --half">
       <p class="title"><%= product.title %></p>
-      <p class="price">£ <%= product.price %></p>
+      <p class="price"><%= humanized_money_with_symbol format_price product.price_cents %></p>
       <p class="subtitle"><%= product.subtitle %></p>
     </div>
 

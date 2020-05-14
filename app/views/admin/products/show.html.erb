@@ -35,7 +35,7 @@
     <div class="block-content">
       <p>
         <strong>Price:</strong>
-        <%= @product.price %>
+        <%= humanized_money_with_symbol format_price @product.price_cents %>
       </p>
     </div>
 

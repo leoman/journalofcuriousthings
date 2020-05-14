@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_11_161419) do
+ActiveRecord::Schema.define(version: 2020_05_14_112823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,17 +38,16 @@ ActiveRecord::Schema.define(version: 2020_05_11_161419) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "product_id"
+    t.string "name"
+    t.string "email"
     t.integer "status", default: 0
     t.string "token"
     t.string "charge_id"
     t.string "error_message"
     t.integer "payment_gateway"
-    t.datetime "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price_cents", default: 0, null: false
-    t.string "name"
-    t.string "email"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -75,16 +74,17 @@ ActiveRecord::Schema.define(version: 2020_05_11_161419) do
   end
 
   create_table "products", force: :cascade do |t|
+    t.string "title"
+    t.string "slug"
+    t.string "subtitle"
+    t.string "description"
+    t.integer "status", default: 0
+    t.integer "product_type", default: 0
+    t.datetime "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "title"
-    t.string "subtitle"
-    t.float "price"
-    t.string "description"
-    t.integer "status"
-    t.integer "product_type"
-    t.datetime "date"
-    t.string "slug"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "GBP", null: false
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -120,8 +120,6 @@ ActiveRecord::Schema.define(version: 2020_05_11_161419) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "orders", "products"
-  add_foreign_key "product_themes", "products"
   add_foreign_key "product_themes", "themes"
   add_foreign_key "taggings", "posts"
   add_foreign_key "taggings", "tags"

@@ -28,8 +28,8 @@
   </div>
 
   <div class="input-wrapper">
-    <%= form.label :price %>
-    <%= form.number_field :price, step: '0.01', placeholder: '0.00' %>
+    <%= form.label :price_in_pence %>
+    <%= form.number_field :price_cents, step: '1', placeholder: '0' %>
   </div>
 
   <div class="input-wrapper">

@@ -10,7 +10,7 @@
       </div>
 
       <div class="price">
-        <h4>£ <%= @product.price %></h4>
+        <h4><%= humanized_money_with_symbol format_price @product.price_cents %></h4>
       </div>
 
       <div class="description">
