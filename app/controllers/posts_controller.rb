@@ -3,6 +3,12 @@ class PostsController < ApplicationController
   POSTS_PER_PAGE = 10
 
   before_action :set_page, :set_total, :set_total_pages, only: [:index]
+
+  def initialize
+    super
+    @@page_title = "Posts Title"
+    @@navigation_page = :home_path
+  end
  
   def index
     @posts = Post.where(:status => Post.statuses[:published]).order(sticky: :desc, date: :desc).limit(POSTS_PER_PAGE).offset(@page * POSTS_PER_PAGE)

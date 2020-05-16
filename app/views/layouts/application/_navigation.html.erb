@@ -1,18 +1,16 @@
 <%
     navLinks = [
-      { name: 'Blog Posts', url: '/' },
+      { name: 'Blog Posts', url: home_path },
       { name: 'Kirsty\'s Shop', url: products_path },
-      { name: 'Gallery', url: products_path },
-      { name: 'Other Item', url: products_path },
-      { name: 'Another Item', url: products_path }
+      { name: 'Gallery', url: '/gallery' },
+      { name: 'Other Item', url: '/other' },
+      { name: 'Another Item', url: '/ither' }
     ]
-    current = '/'
 %>
-
 <div class="navigation shadow w-full z-20">
   <ul>
     <% navLinks.each do |link| %>
-      <li class="<%= 'current' unless current != link[:url] %>"><%= link_to link[:name], link[:url] %></li>
+      <li class="<%= 'current' unless link[:url] != @navigation_page %>"><%= link_to link[:name], link[:url] %></li>
     <% end %>
   </ul>
 </div>

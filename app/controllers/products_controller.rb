@@ -1,5 +1,11 @@
 class ProductsController < ApplicationController
  
+  def initialize
+    super
+    @@page_title = "Products Title"
+    @@navigation_page = :products_path
+  end
+
   def index
     @products = Product.where(:status => Product.statuses[:live]).order(date: :desc)
   end
