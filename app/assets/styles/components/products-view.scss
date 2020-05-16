@@ -1,0 +1,62 @@
+.products {
+
+  width: 100%;
+
+  .products-list {
+
+    display: flex;
+
+    .product {
+      width: 33%;
+      position: relative;
+
+      a {
+        display: inline-flex;
+      }
+
+      .image {
+
+        transform: translate3d(0, 0, 0);
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        
+        img {
+          width: 100%;
+          display: block;
+        }
+      }
+
+      .title {
+        transform: translate3d(0, 0, 0);
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-end;
+
+        h3 {
+          background: rgba(0, 0, 0, 0.6);
+          text-align: center;
+          color: #fff;
+          font-size: 1.5rem;
+          padding: 15px 10px;
+          margin: 0;
+          display: block;
+          line-height: 1;
+          width: 100%;
+          // font-family: 'Playfair Display', serif;
+          font-style: normal;
+          font-weight: 400;
+          letter-spacing: 2px;
+          line-height: 1.2;
+          box-sizing: border-box;
+        }
+      }
+
+    }
+  }
+}

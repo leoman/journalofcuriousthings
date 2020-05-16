@@ -1,0 +1,63 @@
+<div>
+  <h1>List of products</h1>
+
+  <%= form_with(url: orders_submit_path, local: true, id: 'order-details') do |form| %>
+  <input type="hidden" value="paypal" name="order[payment_gateway]" />
+
+  <% @products.each do |product| %>
+  <div class='data-charges-and-payments-section'>
+    <%= form.radio_button('order[product_id]', product.id) %>
+    <span><%= product.title %></span>
+    <span><%= product.price_cents %></span>
+  </div>
+  <% end %>
+
+  <hr />
+
+  <h2>Payment Method</h2>
+
+  <div id="submit-paypal"></div>
+
+  <% end %>
+
+</div>
+
+<script>
+
+  (function setupPaypal() {
+    function isPayment() {
+      return $('input[name="order[product_id]"]:checked').length
+    }
+
+    function submitOrderPaypal(chargeID) {
+      var $form = $("#order-details");
+      // Add a hidden input orders[charge_id]
+      $form.append($('<input type="hidden" name="order[charge_id]"/>').val(chargeID));
+
+      $form.submit();
+    }
+
+    paypal.Buttons({
+      env: "#{ENV['PAYPAL_ENV']}",
+      createOrder: function () {
+        if (isPayment()) {
+          console.log("<%= paypal_create_payment_url %>")
+          return $.post("<%= paypal_create_payment_url %>", $('#order-details').serialize()).then(function (data) {
+            return data.token;
+          });
+        }
+      },
+      onApprove: function (data) {
+        if (isPayment()) {
+          return $.post("<%= paypal_execute_payment_url %>", {
+            paymentID: data.paymentID,
+            payerID: data.payerID
+          }).then(function () {
+            submitOrderPaypal(data.paymentID)
+          });
+        }
+      }
+    }).render('#submit-paypal');
+  }());
+
+</script>
