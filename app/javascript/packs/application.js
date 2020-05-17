@@ -8,6 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("packs/grid")
+import '../components/ProductListFilters'
 
 import '../../assets/styles/index.scss'
  

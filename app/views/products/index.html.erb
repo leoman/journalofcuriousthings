@@ -4,11 +4,42 @@
   <div class="products">
 
     <div class="product-carousel">
-
     </div>
 
     <div class="product-filters">
-      <%= Product.product_types.inspect %>
+
+      <% if Product.product_types %>
+        <div class="select-box" data-param="type">
+
+          <div class="select-box__current" tabindex="1">
+            <div class="select-box__value">
+              <input class="select-box__input" type="radio" id="0" value="" name="product-type" checked="checked">
+              <p class="select-box__input-text">Filter by Product type</p>
+            </div>
+            <% Product.product_types.each_with_index do | (value, number), index| %>
+              <div class="select-box__value">
+                <input class="select-box__input" type="radio" id="<%= number + 1 %>" value="<%= value %>" name="product-type" <%= checked="checked" unless params[:type] != value %> >
+                <p class="select-box__input-text"><%= value.capitalize %></p>
+              </div>
+            <% end %>
+            <img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon" aria-hidden="true">
+          </div>
+         
+
+          <ul class="select-box__list">
+            <li>
+              <label class="select-box__option" for="0" aria-hidden="aria-hidden">All</label>
+            </li>
+            <% Product.product_types.each_with_index do | (value, number) , index| %>
+              <li>
+                <label class="select-box__option" for="<%= number + 1 %>" aria-hidden="aria-hidden"><%= value.capitalize %></label>
+              </li>
+            <% end %>
+          </ul>
+
+        </div>
+      <% end %>
+      
     </div>
 
     <div class="products-list">
@@ -40,6 +71,15 @@
       <% end %>
 
     </div>
+
+    <% if @paginated %>
+      <div class="bg-white w-full md:w-1/2 p-3 mb-6 md:mb-0">
+        <div class="inline-flex">
+          <%= link_to 'Previous', { controller: "products", action: "index", page: @page - 1 }, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l" unless @page <= 0 %>
+          <%= link_to "Next", { controller: "products", action: "index", page: @page + 1 }, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r" unless @page >= @paginated -1  %>
+        </div>
+      </div>
+    <% end %>
 
   </div>
 
