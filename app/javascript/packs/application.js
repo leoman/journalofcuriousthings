@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("packs/grid")
 import '../components/ProductListFilters'
+import '../components/ProductCarousel'
 
 import '../../assets/styles/index.scss'
  

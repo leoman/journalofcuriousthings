@@ -4,6 +4,17 @@
   <div class="products">
 
     <div class="product-carousel">
+      <% if @products %>
+        <section class="product-slider">
+          <% @products.each do |product| %>
+            <% if product.mainImage.attached? %>
+              <div class="image">
+                <img class="main-image" src="<%= (url_for(product.mainImage)) %>" />
+              </div>
+            <% end %>
+          <% end %>
+        </section>
+      <% end %>
     </div>
 
     <div class="product-filters">
@@ -73,11 +84,18 @@
     </div>
 
     <% if @paginated %>
-      <div class="bg-white w-full md:w-1/2 p-3 mb-6 md:mb-0">
-        <div class="inline-flex">
-          <%= link_to 'Previous', { controller: "products", action: "index", page: @page - 1 }, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l" unless @page <= 0 %>
-          <%= link_to "Next", { controller: "products", action: "index", page: @page + 1 }, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r" unless @page >= @paginated -1  %>
-        </div>
+      <div class="pagination">
+        <% if @page >= 1 %>
+          <%= link_to(products_path({ page: @page - 1, type: params[:type] })) do  %>
+          <span class="prev">&lsaquo;</span> Previous
+          <% end %>
+        <% end %>
+        <% if @page < @paginated -1 %>
+          <%= link_to(products_path({ page: @page + 1, type: params[:type] })) do  %>
+            Next <span class="next">&rsaquo;</span>
+          <% end %>
+        <% end %>
+        <p>Showing <%= @start %> - <%= @end %> of <%= @total %> results</p>
       </div>
     <% end %>
 

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
  
-  PRODUCTS_PER_PAGE = 10
+  PRODUCTS_PER_PAGE = 5
 
   before_action :set_page, :set_total, :set_total_pages, only: [:index]
 
@@ -11,11 +11,13 @@ class ProductsController < ApplicationController
   end
 
   def index
+    query = Product.where(status: Product.statuses[:live]).order(date: :asc).limit(PRODUCTS_PER_PAGE).offset(@page * PRODUCTS_PER_PAGE)
     if params[:type]
-      @products = Product.where(:status => Product.statuses[:live], :product_type => params[:type]).order(date: :desc).limit(PRODUCTS_PER_PAGE).offset(@page * PRODUCTS_PER_PAGE)
+      @products = query.where(product_type: params[:type])
     else
-      @products = Product.where(:status => Product.statuses[:live]).order(date: :desc).limit(PRODUCTS_PER_PAGE).offset(@page * PRODUCTS_PER_PAGE)
+      @products = query
     end
+
   end
 
   def show
@@ -34,13 +36,21 @@ class ProductsController < ApplicationController
     end
 
     def set_total
-      @total = Product.where(:status => Product.statuses[:live]).size
+      query = Product.where(:status => Product.statuses[:live])
+      if params[:type]
+        @total = query.where(product_type: params[:type]).size
+      else
+        @total  = query.size
+      end
     end
 
     def set_total_pages
       if @total <= PRODUCTS_PER_PAGE
         @paginated = false
       else
+        @end = (@page + 1) * PRODUCTS_PER_PAGE
+        @start = (@end - PRODUCTS_PER_PAGE) + 1
+        @end = @end > @total ? @total : @end
         @paginated = (@total.to_f / PRODUCTS_PER_PAGE.to_f).ceil 
       end
     end
