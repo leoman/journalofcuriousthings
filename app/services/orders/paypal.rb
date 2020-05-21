@@ -1,7 +1,7 @@
 class Orders::Paypal < ApplicationController
 
   def self.create_payment(order:, product:)
-    payment_price = product.price.to_s
+    payment_price = (product.price_cents/100.0).to_s
     currency = "GBP"
     payment = PayPal::SDK::REST::Payment.new({
       intent:  "sale",

@@ -5,6 +5,12 @@ class OrdersController < ApplicationController
   SUCCESS_MESSAGE = 'Order Performed Successfully!'
   FAILURE_MESSAGE = 'Oops something went wrong. Please call the administrator'
 
+  def initialize
+    super
+    @@page_title = "Orders Title"
+    @@navigation_page = :products_path
+  end
+
   def details
     @product = Product.find_by slug: params[:slug], status: Product.statuses[:live]
     if @product
@@ -40,7 +46,7 @@ class OrdersController < ApplicationController
     @product = Product.find(@order.product_id)
   ensure
     if @order&.save
-      
+      OrderMailer.with(order: @order).order_confirmation.deliver_later
     else 
       @error = FAILURE_MESSAGE
     end
@@ -71,7 +77,7 @@ class OrdersController < ApplicationController
     # @order = Order.new(order_params)
     # @order.user_id = current_user.id
     @product = Product.find(@order.product_id)
-    @order.price_cents = @product.price
+    @order.price_cents = @product.price_cents
   end
 
   def order_params

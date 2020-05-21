@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello <%= @order.name %></h1>
+    <p>
+      Thank you for placing an order with Journal of curious things. For reference your order number is <%= @order.id %>.<br>
+    </p>
+    <p>
+      We will now send our your order of: <strong><%= @product.title %></strong> to this email address shortly. Please remember to check your junk-email folder too..
+    </p>
+    <p>Thanks for ordering and have a great day!</p>
+  </body>
+</html>
