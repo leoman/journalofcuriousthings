@@ -3,11 +3,23 @@ class Admin::BaseController < ApplicationController
   layout "admin"
   
   @@posts_per_page = 10
+  @@page_title = "Admin :: Journal of Curious Things"
+  @@navigation_page = ""
+
 
   def show
   end
 
   def edit
   end
+
+  private
+    def set_page_title
+      @page_title = @@page_title
+    end
+
+    def set_navigation_page
+      @navigation_page = send(@@navigation_page)
+    end
 
 end

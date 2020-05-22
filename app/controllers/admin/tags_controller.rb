@@ -3,6 +3,11 @@ class Admin::TagsController < Admin::BaseController
 
   before_action :set_tag, only: [:edit, :update, :destroy]
 
+  def initialize
+    super
+    @@navigation_page = :admin_tags_path
+  end
+
   def index
     @tags = Tag.all
   end

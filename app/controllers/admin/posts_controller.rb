@@ -4,6 +4,11 @@ class Admin::PostsController < Admin::BaseController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :preview]
   before_action :set_page, :set_total, :set_total_pages, only: [:index]
 
+  def initialize
+    super
+    @@navigation_page = :admin_posts_path
+  end
+
   def index
     @posts = Post.order(sticky: :desc, date: :desc).limit(@@posts_per_page).offset(@page * @@posts_per_page)
   end

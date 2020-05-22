@@ -1,0 +1,68 @@
+
+<div class="content --flex">
+
+  <div class="products">
+
+    <div class="product-carousel">
+      <% if @products %>
+        <section class="product-slider">
+          <% @products.each do |product| %>
+            <% if product.mainImage.attached? %>
+              <div class="image">
+                <img class="main-image" src="<%= (url_for(product.mainImage)) %>" />
+              </div>
+            <% end %>
+          <% end %>
+        </section>
+      <% end %>
+    </div>
+
+    <div class="products-list">
+
+      <% if @products %>
+        <% @products.each do |product| %>
+
+          <div class="product">
+
+            <%= link_to(product_show_path(product.slug)) do %>
+
+              <% if product.mainImage.attached? %>
+                <div class="image">
+                  <img class="main-image" src="<%= (url_for(product.mainImage)) %>" />
+                </div>
+              <% end %>
+
+              <div class="title">
+                <h3>
+                  <%= product.title %> - <%= humanized_money_with_symbol format_price product.price_cents %>
+                </h3>
+              </div>
+
+            <% end %>
+
+          </div>
+
+        <% end %>
+      <% end %>
+
+    </div>
+
+    <% if @paginated %>
+      <div class="pagination">
+        <% if @page >= 1 %>
+          <%= link_to(products_category_path({ page: @page - 1, type: params[:type] })) do  %>
+          <span class="prev">&lsaquo;</span> Previous
+          <% end %>
+        <% end %>
+        <% if @page < @paginated -1 %>
+          <%= link_to(products_category_path({ page: @page + 1, type: params[:type] })) do  %>
+            Next <span class="next">&rsaquo;</span>
+          <% end %>
+        <% end %>
+        <p>Showing <%= @start %> - <%= @end %> of <%= @total %> results</p>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>

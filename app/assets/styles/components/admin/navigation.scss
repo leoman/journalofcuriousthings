@@ -44,6 +44,11 @@ navigation {
         margin-bottom: 0;
       }
 
+      &.current a {
+        color: $black;
+        border-color: $orange;
+      }
+
       a {
         text-decoration: none;
         color: $orange;

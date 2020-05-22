@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
  
   PRODUCTS_PER_PAGE = 5
 
-  before_action :set_page, :set_total, :set_total_pages, only: [:index]
+  before_action :set_page, :set_total, :set_total_pages, only: [:index, :category]
 
   def initialize
     super
@@ -17,7 +17,10 @@ class ProductsController < ApplicationController
     else
       @products = query
     end
+  end
 
+  def category
+    @products = Product.where(status: Product.statuses[:live], product_type: params[:category]).order(date: :asc).limit(PRODUCTS_PER_PAGE).offset(@page * PRODUCTS_PER_PAGE)
   end
 
   def show

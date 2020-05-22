@@ -3,6 +3,11 @@ class Admin::ThemesController < Admin::BaseController
 
   before_action :set_theme, only: [:edit, :update, :destroy]
 
+  def initialize
+    super
+    @@navigation_page = :admin_themes_path
+  end
+
   def index
     @themes = Theme.all
   end

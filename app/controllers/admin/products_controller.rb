@@ -4,6 +4,11 @@ class Admin::ProductsController < Admin::BaseController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :preview]
   before_action :set_page, :set_total, :set_total_pages, only: [:index]
 
+  def initialize
+    super
+    @@navigation_page = :admin_products_path
+  end
+
   def index
     @products = Product.order(date: :desc).limit(@@posts_per_page).offset(@page * @@posts_per_page)
   end

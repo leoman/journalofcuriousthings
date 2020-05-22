@@ -3,6 +3,11 @@ class Admin::OrdersController < Admin::BaseController
 
   before_action :set_page, :set_total, :set_total_pages, only: [:index]
 
+  def initialize
+    super
+    @@navigation_page = :admin_orders_path
+  end
+
   def index
     @orders = Order.order(created_at: :desc).limit(@@posts_per_page).offset(@page * @@posts_per_page)
   end

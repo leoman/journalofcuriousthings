@@ -14,7 +14,7 @@
     <% if signed_in? %>
       <ul>
         <% links.each do |key, value| %>
-          <li>
+          <li class="<%= 'current' unless value != @navigation_page %>" >
             <%= link_to key.capitalize, value %>
           </li>
         <% end %>
