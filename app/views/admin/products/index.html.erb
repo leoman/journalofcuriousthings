@@ -26,12 +26,12 @@
           <% @products.each do |product| %>
             <tr>
               <td><%= product.title %></td>
-              <td><%= product.date.to_s(:long) %></td>
+              <td><%= product.date.to_s(:short) %></td>
               <td><%= product.product_type.capitalize %></td>
               <td><%= product.status.capitalize %></td>
               <td><%= humanized_money_with_symbol format_price product.price_cents %></td>
               <td class="text-center">
-                <%= link_to 'Preview', preview_admin_product_path(product), class: "btn --blue" %>
+                <%= link_to 'Preview', preview_admin_product_path({ id: product.id, page: @page }), class: "btn --blue" %>
               </td>
               <td class="text-center">
                 <%= link_to 'Show', admin_product_path(product), class: "btn --blue" %>
@@ -52,8 +52,8 @@
 
   <% if @paginated %>
     <div class="content-section-wrapper">
-      <%= link_to 'Previous', { controller: "products", action: "index", page: @page - 1 }, class: "btn" unless @page <= 0 %>
-      <%= link_to "Next", { controller: "products", action: "index", page: @page + 1 }, class: "btn" unless @page >= @paginated -1  %>
+      <%= link_to 'Previous', admin_products_path({ page: @page - 1 }), class: "btn" unless @page <= 0 %>
+      <%= link_to "Next", admin_products_path({ page: @page + 1 }), class: "btn" unless @page >= @paginated -1  %>
     </div>
   <% end %>
 

@@ -13,6 +13,12 @@ class Admin::ProductsController < Admin::BaseController
     @products = Product.order(date: :desc).limit(@@posts_per_page).offset(@page * @@posts_per_page)
   end
 
+  def preview
+    @preview = true
+    @page = params[:page]
+    render layout: "application", template: 'products/show'
+  end
+
   def new
     @product = Product.new
   end
