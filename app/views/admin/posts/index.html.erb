@@ -29,7 +29,7 @@
                 <td><%= post.status.capitalize %></td>
                 <td><%= post.sticky.to_s.capitalize %></td>
                 <td class="text-center">
-                  <%= link_to 'Preview', preview_admin_post_path(post), class: "btn --blue" %>
+                  <%= link_to 'Preview', preview_admin_post_path({ id: post.id, page: @page }), class: "btn --blue" %>
                 </td>
                 <td class="text-center">
                   <%= link_to 'Show', admin_post_path(post), class: "btn --blue" %>

@@ -1,3 +1,11 @@
+.half {
+  width: 100%;
+  display: flex;
+  .block-content {
+    width: 50%;
+  }
+}
+
 .block-content {
   margin-bottom: 1.5rem;
   letter-spacing: 0.025em;

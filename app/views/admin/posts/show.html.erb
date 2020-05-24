@@ -11,26 +11,21 @@
       </div>
     <% end %>
 
-    <div class="block-content">
-      <p>
-        <strong>Title:</strong>
-        <%= @post.title %>
-      </p>
-    </div>
-
-    <div class="block-content">
-      <p>
-        <strong>Subtitle:</strong>
-        <%= @post.subtitle %>
-      </p>
-    </div>
-
-    <% if @post.mainImage.attached? %>
+    <div class="half">
       <div class="block-content">
-        <p><strong>Current main image uploaded</strong></p>
-        <img class="max-w-md" src="<%= (url_for(@post.mainImage)) %>" />
+        <p>
+          <strong>Title:</strong>
+          <%= @post.title %>
+        </p>
       </div>
-    <% end %>
+
+      <div class="block-content">
+        <p>
+          <strong>Subtitle:</strong>
+          <%= @post.subtitle %>
+        </p>
+      </div>
+    </div>
 
     <div class="block-content">
       <p>
@@ -38,34 +33,50 @@
         <%= @post.excerpt %>
       </p>
     </div>
-    
-    <div class="block-content">
-      <p>
-        <strong>Date:</strong>
-        <%= @post.date %>
-      </p>
-    </div>
-    
-    <div class="block-content">
-      <p>
-        <strong>Status:</strong>
-        <%= @post.status %>
-      </p>
-    </div>
-    
-    <div class="block-content">
-      <p>
-        <strong>Sticky:</strong>
-        <%= @post.sticky %>
-      </p>
+
+    <div class="half">
+      <div class="block-content">
+        <p>
+          <strong>Date:</strong>
+          <%= @post.date %>
+        </p>
+      </div>
+
+      <div class="block-content">
+        <p>
+          <strong>Tags:</strong>
+          <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+        </p>
+      </div>
     </div>
 
-    <div class="block-content">
-      <p>
-        <strong>Tags:</strong>
-        <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
-      </p>
+    <div class="half">
+      <div class="block-content">
+        <p>
+          <strong>Status:</strong>
+          <%= @post.status %>
+        </p>
+      </div>
+
+      <div class="block-content">
+        <p>
+          <strong>Sticky:</strong>
+          <%= @post.sticky.to_s.capitalize %>
+        </p>
+      </div>
     </div>
+    
+    <div class="half">
+
+      <% if @post.mainImage.attached? %>
+        <div class="block-content">
+          <p><strong>Current main image uploaded</strong></p>
+          <img class="main-image" src="<%= (url_for(@post.mainImage)) %>" />
+        </div>
+      <% end %>
+
+    </div>
+
   </div>
 
   <div class="content-section-wrapper">

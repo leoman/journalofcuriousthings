@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
   
   namespace :admin do
+    get '/', to: redirect('/admin/posts')
     get '/posts/page/(/:page)', to: 'posts#index', defaults: { page: '0' }, constraints: { page: /[0-9]/ }, as: :paginated
     resources :tags, :themes, :orders
     resources :posts, :products do

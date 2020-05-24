@@ -7,7 +7,9 @@
     <table class="table">
       <thead>
         <tr>
+          <th>Name</th>
           <th>Date</th>
+          <th>Price</th>
           <th>Status</th>
           <th colspan="4"></th>
         </tr>
@@ -17,7 +19,9 @@
         <% if @orders %>
           <% @orders.each do |order| %>
             <tr>
-                <td><%= order.created_at.to_s(:long) %></td>
+                <td><%= order.name.capitalize %></td>
+                <td><%= order.created_at.to_s(:short) %></td>
+                <td><%= humanized_money_with_symbol format_price order.price_cents %></td>
                 <td><%= order.status.capitalize %></td>
                 <td class="text-center">
                   <%= link_to 'Show', admin_order_path(order), class: "btn --blue" %>

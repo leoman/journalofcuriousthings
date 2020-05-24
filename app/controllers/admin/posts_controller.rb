@@ -52,8 +52,9 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def preview
-    @post = Post.find(params[:id])
-    render layout: "application"
+    @preview = true
+    @return = admin_posts_path({ page: @page })
+    render layout: "application", template: 'posts/show'
   end
 
   private

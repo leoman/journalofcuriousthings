@@ -65,6 +65,16 @@ form.base {
 form.admin {
 
   padding-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+
+  .half {
+    width: 100%;
+    display: flex;
+    .input-wrapper {
+      width: 50%;
+    }
+  }
 
   .input-wrapper {
     display: flex;

@@ -12,7 +12,7 @@
 %>
 <% if @preview %>
   <div class="admin-preview">
-    <%= link_to(admin_products_path({ page: @page })) do  %>
+    <%= link_to @return do  %>
       Preview - Return to the previous page
     <% end %>
   </div>

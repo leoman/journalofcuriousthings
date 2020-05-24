@@ -18,19 +18,21 @@
     </div>
   <% end %>
 
-  <div class="input-wrapper">
+  <!-- <div class="input-wrapper">
     <%= form.label :content, class: "form-label" %>
     <%= react_component("SlateEditor", { greeting: "Hello from react-rails." }, { class: "slate-editor-wrapper" }) %>
-  </div>
+  </div> -->
 
-  <div class="input-wrapper">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+  <div class="half">
+    <div class="input-wrapper">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
 
-  <div class="input-wrapper">
-    <%= form.label :subtitle %>
-    <%= form.text_field :subtitle %>
+    <div class="input-wrapper">
+      <%= form.label :subtitle %>
+      <%= form.text_field :subtitle %>
+    </div>
   </div>
 
   <div class="input-wrapper">
@@ -43,42 +45,45 @@
     <%= form.text_area :content, rows: 5 %>
   </div>
   
-  <div class="input-wrapper">
-    <%= form.label :date %>
-    <%= form.datetime_select :date, {} %>
-  </div>
-
-  <div class="input-wrapper">
-    <%= form.label :status %>
-    <%= form.select(:status, options_for_select(Post.statuses, Post.status_to_i(post[:status])), {}) %>
-  </div>
-
-  <% if @post.mainImage.attached? %>
+  <div class="half">
     <div class="input-wrapper">
-      <label>Current main image uploaded</label>
-      <img class="main-image" src="<%= (url_for(@post.mainImage)) %>" />
+      <%= form.label :date %>
+      <%= form.datetime_select :date, {} %>
     </div>
-  <% end %>
 
-  <div class="input-wrapper">  
-    <%= form.file_field :mainImage %>
+    <div class="input-wrapper">
+      <input id="tags" type="hidden" value="" name="post[tag_ids]" />
+      <%= form.label :tags %>
+      <span class="multi-select"></span>
+    </div>
   </div>
 
-  <div class="input-wrapper">
-    <%= form.check_box :sticky %> <br />
-    <p class="text-grey">Make this post sticky</p>
+  <div class="half">
+    <div class="input-wrapper">
+      <%= form.label :status %>
+      <%= form.select(:status, options_for_select(Post.statuses, Post.status_to_i(post[:status])), {}) %>
+    </div>
+
+    <div class="input-wrapper">
+      <%= form.check_box :sticky %> <br />
+      <p class="text-grey">Make this post sticky</p>
+    </div>
   </div>
 
-  <div class="input-wrapper">
-    <%= form.label :status %>
-    <%= form.select(:status, options_for_select(Post.statuses, Post.status_to_i(post[:status])), {}) %>
+  <div class="half">
+    <div class="input-wrapper">  
+      <%= form.file_field :mainImage %>
+    </div>
+    
+    <% if @post.mainImage.attached? %>
+      <div class="input-wrapper">
+        <label>Current main image uploaded</label>
+        <img class="main-image" src="<%= (url_for(@post.mainImage)) %>" />
+      </div>
+    <% end %>
   </div>
 
-  <div class="input-wrapper">
-    <input id="tags" type="hidden" value="" name="post[tag_ids]" />
-    <%= form.label :tags %>
-    <span class="multi-select"></span>
-  </div>
+
 
   <div class="input-wrapper">
     <%= form.submit 'Submit', class: "btn --submit" %>

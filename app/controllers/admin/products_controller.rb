@@ -15,7 +15,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def preview
     @preview = true
-    @page = params[:page]
+    @return = admin_products_path({ page: @page })
     render layout: "application", template: 'products/show'
   end
 
