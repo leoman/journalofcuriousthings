@@ -8,8 +8,9 @@
 
 posts = [
     {
-        title: 'My first blog post',
+        title: 'The changed',
         subtitle: 'An amazing subtitle',
+        excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
         status: 1,
         sticky: true,
@@ -40,7 +41,7 @@ posts = [
         date: Date.today
     },
     {
-        title: 'My last blog post',
+        title: 'My last changed blog post',
         subtitle: 'An amazing subtitle',
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
         status: 0,
@@ -50,5 +51,14 @@ posts = [
 ]
 
 posts.each do |post|
-    Post.create( title: post[:title], content: post[:content], status: post[:status], date: post[:date] )
+    Post.create(
+        title: post[:title],
+        subtitle: post[:subtitle],
+        slug: post[:slug].to_s.parameterize,
+        content: post[:content],
+        excerpt: post[:excerpt],
+        status: post[:status],
+        date: post[:date],
+        sticky: post[:sticky],
+    )
 end
