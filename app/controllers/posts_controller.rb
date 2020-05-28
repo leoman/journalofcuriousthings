@@ -38,6 +38,9 @@ class PostsController < ApplicationController
       if @total <= POSTS_PER_PAGE
         @paginated = false
       else
+        @end = (@page + 1) * POSTS_PER_PAGE
+        @start = (@end - POSTS_PER_PAGE) + 1
+        @end = @end > @total ? @total : @end
         @paginated = (@total.to_f / POSTS_PER_PAGE.to_f).ceil 
       end
     end
