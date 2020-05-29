@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
  
-  PRODUCTS_PER_PAGE = 5
+  PRODUCTS_PER_PAGE = 10
 
   before_action :set_page, :set_total, :set_total_pages, only: [:index, :category]
 
