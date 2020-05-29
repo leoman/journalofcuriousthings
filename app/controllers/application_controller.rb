@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :page_not_found
 
   def format_price(price_cents)
-    Money.new(price_cents, :gbp)
+    Money.locale_backend = nil
+    Money.new(price_cents, 'GBP').format
   end
 
   private
