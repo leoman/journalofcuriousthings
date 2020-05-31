@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
       @order.product_id = @product.id
       @order.set_paypal_payment_gateway
     else
-      @message = FAILURE_MESSAGE
+      render "errors/not_found", status: :not_found
     end
   end
   

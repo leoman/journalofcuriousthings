@@ -32,6 +32,10 @@ FactoryBot.define do
     trait :product_type_print do
       product_type { :print }
     end
+
+    trait :status_draft do
+      status { :draft }
+    end
   end
 
 end
