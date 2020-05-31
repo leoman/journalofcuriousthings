@@ -9,7 +9,7 @@ product = {
   sticky: true,
   date: Date.today,
   price_currency: 'GBP',
-  price_cents: '1000'
+  price_cents: '1050'
 }
 
 FactoryBot.define do
