@@ -1,5 +1,9 @@
 require 'rails_helper'
 require 'database_cleaner/active_record'
+require 'money'
+
+Money.locale_backend = nil
+Money.rounding_mode = BigDecimal::ROUND_HALF_UP
 
 RSpec.describe 'Orders', type: :system do
 
@@ -45,17 +49,37 @@ RSpec.describe 'Orders', type: :system do
       expect(page.find(".content form > div:nth-child(3)").find('.error_explanation')).to have_content("Email is invalid")
     end
 
-    # it 'shows summary of the product' do
+    it 'shows summary of the product' do
+      visit orders_details_path(@product.slug)
+      expect(page).to have_selector('.product-summary', count: 1)
+      expect(page.find('.product-summary .title')).to have_content(@product.title)
+      expect(page.find('.product-summary .price').text).to have_content(Money.new(@product.price_cents, 'GBP').format)
+      expect(page.find('.product-summary .subtitle')).to have_content(@product.subtitle)
+    end
 
-    # end
-
-    # it 'moves to the checkout page when the form is filled in correctly' do
-
-    # end
-
-    # it 'saves a new pending order to the DB when the submit is clicked' do
+    it 'moves to the checkout page when the form is filled in correctly' do
+      visit orders_details_path(@product.slug)
+      page.find('.content form input[name="order[name]"').send_keys 'Luke Skywalker'
+      page.find('.content form input[name="order[email]"').send_keys 'lightside@darthplagusthewise.com'
+      page.find('.content form input[type="submit"]').click
       
-    # end
+      @order = Order.recently_created.last
+      
+      expect(page.find('#order-details h2')).to have_content 'Payment'
+      expect(page).to have_current_path(orders_checkout_path(@order))
+    end
+
+    it 'saves a new pending order to the DB when the submit is clicked' do
+      visit orders_details_path(@product.slug)
+      page.find('.content form input[name="order[name]"').send_keys 'Luke Skywalker'
+      page.find('.content form input[name="order[email]"').send_keys 'lightside@darthplagusthewise.com'
+      page.find('.content form input[type="submit"]').click
+      
+      @order = Order.recently_created.last
+
+      expect(@order.status).to eq "pending"
+      expect(page).to have_current_path(orders_checkout_path(@order))
+    end
     
   end
 end
