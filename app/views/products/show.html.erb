@@ -3,6 +3,12 @@
   <div class="product">
 
     <div class="product-content">
+
+      <% if @return_to_previous %>
+        <div class="return-to-previous">
+          <%= link_to 'Return to previous', @return_to_previous %>
+        </div>
+      <% end %>
   
       <div class="title">
         <h2><%= @product.title %></h2>

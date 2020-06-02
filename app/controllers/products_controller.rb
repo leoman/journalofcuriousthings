@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @return_to_previous = request.referer
     @product = Product.find_by slug: params[:slug], status: Product.statuses[:live]
     if !@product
       render "errors/not_found", status: :not_found
