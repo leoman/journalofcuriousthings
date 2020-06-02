@@ -5,7 +5,7 @@ import { createEditor } from 'slate'
 import { withHistory } from 'slate-history'
 
 import { Toolbar } from './components'
-import { initialstate } from './utils'
+import { initialstate, serializeValueToHtml } from './utils'
 import { onKeyDown } from './helpers'
 import { withImages, withLinks, withEmbeds } from './plugins'
 import { Element, Leaf } from './renderers'
@@ -16,7 +16,7 @@ const SlateEditor = () => {
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withImages(withLinks(withEmbeds(withHistory(withReact(createEditor()))))), [])
   const setUpdatedValue = value => {
-    // console.log(value);
+    serializeValueToHtml(value);
     setValue(value)
   }
 

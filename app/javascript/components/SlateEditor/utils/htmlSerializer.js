@@ -1,6 +1,22 @@
 import { Node, Text } from 'slate'
 import escapeHtml from 'escape-html'
 
+const textAlign = (alignment) => {
+  return `text-align: ${alignment}; `
+}
+
+const styleMethodMap = {
+  'textAlign': textAlign
+}
+
+const styles = (node) => {
+  if (node.inlineStyles) {
+    return inlineStyles(node.inlineStyles)
+  }
+}
+
+const inlineStyles = (inlineStyles) => Object.entries(inlineStyles).reduce((agg, [key, value]) => agg = `${agg} ${styleMethodMap[key](value)}`, '')
+
 export const serialize = node => {
 
   if(node.bold) {
@@ -18,7 +34,6 @@ export const serialize = node => {
   if(node.underline) {
     return `<u>${node.text}</u>`;
   }
-  
 
   if (Text.isText(node)) {
     return escapeHtml(node.text)
@@ -34,7 +49,7 @@ export const serialize = node => {
     case 'link':
       return `<a href="${escapeHtml(node.url)}">${children}</a>`
     case 'heading-one':
-      return `<h1>${children}</h1>`;
+      return `<h1 style="${styles(node)}">${children}</h1>`;
     case 'heading-two':
       return `<h2>${children}</h2>`;
     case 'heading-three':

@@ -18,11 +18,6 @@
     </div>
   <% end %>
 
-  <!-- <div class="input-wrapper">
-    <%= form.label :content, class: "form-label" %>
-    <%= react_component("SlateEditor", { greeting: "Hello from react-rails." }, { class: "slate-editor-wrapper" }) %>
-  </div> -->
-
   <div class="half">
     <div class="input-wrapper">
       <%= form.label :title %>
@@ -41,8 +36,9 @@
   </div>
 
   <div class="input-wrapper">
-    <%= form.label :content %>
-    <%= form.text_area :content, rows: 5 %>
+    <%= form.label :content, class: "form-label" %>
+    <%= react_component("SlateEditor", { content: post.content }, { class: "slate-editor-wrapper" }) %>
+    <%= form.hidden_field :content %>
   </div>
   
   <div class="half">
