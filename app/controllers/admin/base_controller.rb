@@ -19,7 +19,9 @@ class Admin::BaseController < ApplicationController
     end
 
     def set_navigation_page
-      @navigation_page = send(@@navigation_page)
+      if @@navigation_page && @@navigation_page != ""
+        @navigation_page = send(@@navigation_page)
+      end
     end
 
 end
