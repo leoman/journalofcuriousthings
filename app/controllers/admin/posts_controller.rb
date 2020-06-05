@@ -72,7 +72,7 @@ class Admin::PostsController < Admin::BaseController
     end
 
     def post_params 
-      postParams = params.require(:post).permit(:title, :content, :date, :sticky, :subtitle, :excerpt, :mainImage, :tag_list, :tag)
+      postParams = params.require(:post).permit(:title, :content, :content_raw, :date, :sticky, :subtitle, :excerpt, :mainImage, :tag_list, :tag)
       postParams[:tag_ids] = split_post_tags(params[:post][:tag_ids])
       postParams[:status] = params[:post][:status].to_i
       postParams

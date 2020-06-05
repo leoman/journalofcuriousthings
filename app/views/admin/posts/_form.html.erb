@@ -37,7 +37,8 @@
 
   <div class="input-wrapper">
     <%= form.label :content, class: "form-label" %>
-    <%= react_component("SlateEditor", { content: post.content }, { class: "slate-editor-wrapper" }) %>
+    <%= react_component("SlateEditor", { content: post.content_raw, raw: 'post_content_raw', field: 'post_content' }, { class: "slate-editor-wrapper" }) %>
+    <%= form.hidden_field :content_raw %>
     <%= form.hidden_field :content %>
   </div>
   

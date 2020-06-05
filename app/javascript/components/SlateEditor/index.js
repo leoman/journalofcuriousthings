@@ -12,13 +12,16 @@ import { Element, Leaf } from './renderers'
 
 const debouncedExport = debounce(exportToFormField, 500)
 
-const SlateEditor = () => {
-  const [value, setValue] = useState(initialstate)
+const SlateEditor = ({ content, raw, field }) => {
+  
+  const editorState = content ? JSON.parse(content) : initialstate
+
+  const [value, setValue] = useState(editorState)
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withImages(withLinks(withEmbeds(withHistory(withReact(createEditor()))))), [])
   const setUpdatedValue = value => {
-    debouncedExport(value)
+    debouncedExport(value, raw, field)
     setValue(value)
   }
 
@@ -28,7 +31,7 @@ const SlateEditor = () => {
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
-        placeholder=""
+        placeholder="The start of a wonderful post..."
         spellCheck={true}
         autoFocus={false}
         className="slate-editor"

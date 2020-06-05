@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_112823) do
+ActiveRecord::Schema.define(version: 2020_06_05_095534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_112823) do
     t.string "subtitle"
     t.string "excerpt"
     t.string "slug"
+    t.string "content_raw"
     t.index ["title"], name: "index_posts_on_title"
   end
 
