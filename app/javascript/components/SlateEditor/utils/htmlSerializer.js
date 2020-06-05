@@ -1,3 +1,4 @@
+
 import { Node, Text } from 'slate'
 import escapeHtml from 'escape-html'
 
@@ -68,15 +69,23 @@ export const serialize = node => {
       return <em>{children}</em>;
     case 'underline':
       return <u>{children}</u>;
+    case 'numbered-list':
+      return <ol style={styles(node)}>{children}</ol>
+    case 'bulleted-list':
+      return <ul style={styles(node)}>{children}</ul>
+    case 'list-item':
+      return <li style={styles(node)}>{children}</li>
+    case 'image':
+      return `<img src="${node.url}" />`
+    case 'double-image':
+      return `<div className="double"><img src="${node.data.url1}" /><img src="${node.data.url2}" /></div>`
+    case 'line-break':
+      return `<div className="hr"></div>`
     default:
       return children
   }
 }
 
-export const serializeValueToHtml = value => {
-  value.map(node => {
-    console.log(serialize(node));
-  })
-}
+export const serializeValueToHtml = value => value.map(node => serialize(node))
 
 export default serializeValueToHtml;

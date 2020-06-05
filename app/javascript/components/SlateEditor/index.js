@@ -5,10 +5,12 @@ import { createEditor } from 'slate'
 import { withHistory } from 'slate-history'
 
 import { Toolbar } from './components'
-import { initialstate, serializeValueToHtml } from './utils'
+import { initialstate, exportToFormField, debounce } from './utils'
 import { onKeyDown } from './helpers'
 import { withImages, withLinks, withEmbeds } from './plugins'
 import { Element, Leaf } from './renderers'
+
+const debouncedExport = debounce(exportToFormField, 500)
 
 const SlateEditor = () => {
   const [value, setValue] = useState(initialstate)
@@ -16,7 +18,7 @@ const SlateEditor = () => {
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withImages(withLinks(withEmbeds(withHistory(withReact(createEditor()))))), [])
   const setUpdatedValue = value => {
-    serializeValueToHtml(value);
+    debouncedExport(value)
     setValue(value)
   }
 
