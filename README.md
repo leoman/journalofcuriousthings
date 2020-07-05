@@ -15,7 +15,11 @@
 
     rbenv local 2.6.3
 
+    sudo service postgresql start
+
     rails db:setup
 
     rails s
+
+    npm run webpack
 

@@ -31,7 +31,7 @@ const SlateEditor = ({ content, raw, field }) => {
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
-        placeholder="The start of a wonderful post..."
+        placeholder="The start of something wonderful..."
         spellCheck={true}
         autoFocus={false}
         className="slate-editor"

@@ -3,8 +3,8 @@
 
   <div class="products">
 
-    <div class="product-carousel">
-      <% if @products %>
+    <% if @products.length > 0 %>
+      <div class="product-carousel">
         <section class="product-slider">
           <% @products.each do |product| %>
             <% if product.mainImage.attached? %>
@@ -14,8 +14,8 @@
             <% end %>
           <% end %>
         </section>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
 
     <div class="product-filters">
 
