@@ -184,5 +184,8 @@ export const insertLineBreak = editor => {
 }
 
 export const removeElement = (editor, selection) => {
-  Transforms.removeNodes(editor, { at: selection })
+  console.log(selection)
+  try {
+    Transforms.removeNodes(editor, { at: selection })
+  } catch (e) { console.log(e) }
 }

@@ -10,6 +10,7 @@ import EmbedButton from './embedButton'
 import AlignButton from './alignButton'
 import LineBreakButton from './lineBreakButton'
 import ImageDoubleButton from './imageDoubleButton'
+import DeleteButton from './deleteButton'
 
 export const ToolbarWrapper = React.forwardRef(({ className, ...props }, ref) => (
   <Menu
@@ -48,6 +49,7 @@ export const Toolbar = () => (
     <EmbedButton title="Video" icon="movie" />
     <LineBreakButton format="line-break" title="Ruler" icon="view_stream" />
     {/* <MarkButton format="code" icon="code" title="Code" /> */}
+    <DeleteButton format="remove" title="Remove" icon="delete" />
   </ToolbarWrapper>
 )
 

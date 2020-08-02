@@ -176,12 +176,18 @@ export const ContentWrapperWithRemove = ({ attributes, element, children }) => {
     event.preventDefault()
     removeElement(editor, elementSelected)
   }
+
+  return (
+    <div {...attributes} className="slate-editor-content-wrapper">
+      {children}
+    </div>
+  )
+
   return (
     <div {...attributes} className="slate-editor-content-wrapper">
       <div style={{display: selected && focused ? 'block' : 'none'}} className="slate-editor-content-toolbar">
-        <Icon onClick={removeContent}>delete_forever</Icon>
-      </div>
-      {children}
+        <Icon onClick={() => {console.log('######## clicked!!!'); removeContent()}}>delete_forever</Icon>
+      </div>{children}
     </div>
   )
 }

@@ -78,9 +78,9 @@ export const serialize = node => {
     case 'image':
       return `<img src="${node.url}" />`
     case 'double-image':
-      return `<div className="double"><img src="${node.data.url1}" /><img src="${node.data.url2}" /></div>`
+      return `<div class="double"><img src="${node.data.url1}" /><img src="${node.data.url2}" /></div>`
     case 'line-break':
-      return `<div className="hr"></div>`
+      return `<div class="hr"></div>`
     default:
       return children
   }
