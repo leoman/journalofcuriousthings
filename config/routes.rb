@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post 'orders/create' => 'orders#create', as: :orders_create
   get 'orders/checkout/:order_id' => 'orders#checkout', as: :orders_checkout
   patch 'orders/submit', to: 'orders#submit'
-  patch 'orders/paypal/create_payment'  => 'orders#paypal_create_payment', as: :paypal_create_payment
+  post 'orders/paypal/create_payment'  => 'orders#paypal_create_payment', as: :paypal_create_payment
   post 'orders/paypal/execute_payment'  => 'orders#paypal_execute_payment', as: :paypal_execute_payment
 
   resources :posts, only: [:index, :show]

@@ -4,6 +4,6 @@ class OrderMailer < ApplicationMailer
   def order_confirmation
     @order = params[:order]
     @product = Product.find(@order.product_id)
-    mail(to: @order.email, subject: "Order confirmation #{@order.id} of #{@product.title}")
+    mail(to: @order.email, from: 'Journal of curious things', subject: "Order confirmation #{@order.charge_id} of #{@product.title}")
   end
 end

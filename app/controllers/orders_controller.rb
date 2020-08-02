@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
   
   def create
     @order = Order.new(order_params)
+    @order.set_paypal_payment_gateway
     @product = Product.find(@order.product_id)
 
     respond_to do |format|
@@ -52,18 +53,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  def paypal_create_payment
-    # byebug
-    result = Orders::Paypal.create_payment(order: @order, product: @product)
-    if result
-      render json: { token: result }, status: :ok
-    else
-      render json: {error: FAILURE_MESSAGE}, status: :unprocessable_entity
-    end
-  end
-
   def paypal_execute_payment
-    if Orders::Paypal.execute_payment(payment_id: params[:paymentID], payer_id: params[:payerID])
+    if Orders::Paypal.execute_payment(order_id: params[:order_id], status: params[:status], charge_id: params[:charge_id])
       render json: {}, status: :ok
     else
       render json: {error: FAILURE_MESSAGE}, status: :unprocessable_entity
@@ -82,7 +73,7 @@ class OrdersController < ApplicationController
 
   def order_params
     # byebug
-    params.require(:order).permit(:id, :name, :email, :product_id, :token, :payment_gateway, :charge_id)
+    params.require(:order).permit(:id, :name, :email, :product_id, :order_id, :status, :payment_gateway, :charge_id)
   end
   
 end
